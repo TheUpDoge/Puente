@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Puente</string>
+
+    <!-- Línea de estado -->
+    <string name="status_loading_models">Preparando los modelos de voz sin conexión… (solo la primera vez)</string>
+    <string name="status_preparing">Preparando los paquetes de traducción…</string>
+    <string name="status_listening">Escuchando — solo habla</string>
+    <string name="status_mic_denied">Se necesita permiso para usar el micrófono. Toca para intentar de nuevo.</string>
+    <string name="status_download_failed">No se pudieron obtener los paquetes de traducción. Conéctate a internet una vez y toca aquí para reintentar.</string>
+    <string name="status_error">Algo salió mal: %1$s. Toca para reintentar.</string>
+
+    <!-- Modo de idioma: AUTO detecta el idioma, EN/ES lo fijan -->
+    <string name="mode_auto">AUTO</string>
+    <string name="mode_en">EN</string>
+    <string name="mode_es">ES</string>
+
+    <string name="tag_format">%1$s → %2$s</string>
+    <string name="translating">…</string>
+    <string name="hint_empty">Solo habla. Puente escucha en inglés y en español y muestra la traducción aquí.</string>
+</resources>

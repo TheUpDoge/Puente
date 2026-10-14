@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "Puente" = bridge: an arch, a deck, and three pillars. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M30,62 C38,40 70,40 78,62"
+        android:strokeWidth="5"
+        android:strokeColor="#2DE2E6"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M26,62 L82,62"
+        android:strokeWidth="5"
+        android:strokeColor="#FF4FA3"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M42,62 L42,50 M54,62 L54,45 M66,62 L66,50"
+        android:strokeWidth="3"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round" />
+</vector>
