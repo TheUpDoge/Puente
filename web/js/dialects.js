@@ -381,7 +381,8 @@ function buildIndex() {
   }
   const bases = [...byBase.keys()].sort((a, b) => b.length - a.length).map(escapeRe);
   const dets = [...DET_GENDER.keys(), ...NEUTRAL_DET].sort((a, b) => b.length - a.length).map(escapeRe);
-  const re = new RegExp(`(?<![\\p{L}\\p{N}])(?:(${dets.join("|")})\\s+)?(${bases.join("|")})(?![\\p{L}\\p{N}])`, "giu");
+  // No lookbehind: older iPhones (Safari < 16.4) can't parse it. The boundary is captured instead.
+  const re = new RegExp(`(^|[^\\p{L}\\p{N}])(?:(${dets.join("|")})\\s+)?(${bases.join("|")})(?![\\p{L}\\p{N}])`, "giu");
   return { byBase, re };
 }
 
@@ -403,14 +404,14 @@ function swapDet(det, from, to) {
  */
 export function toDialect(text, region = DEFAULT_DIAL.region, level = DEFAULT_DIAL.level) {
   index ??= buildIndex();
-  return String(text ?? "").replace(index.re, (match, det, word) => {
+  return String(text ?? "").replace(index.re, (match, pre, det, word) => {
     const hit = index.byBase.get(word.toLowerCase());
     if (!hit) return match;
     if (hit.entry.det && !det) return match;
     const forms = pickForm(hit.entry, region, level);
     const target = forms[Math.min(hit.i, forms.length - 1)];
-    if (!det) return target;
-    return `${swapDet(det, word.toLowerCase(), target)} ${target}`;
+    if (!det) return `${pre}${target}`;
+    return `${pre}${swapDet(det, word.toLowerCase(), target)} ${target}`;
   });
 }
 
@@ -439,8 +440,8 @@ const WORD_SWAPS = {
 function wordSwap(text, pairs) {
   let t = text;
   for (const [from, to] of pairs) {
-    t = t.replace(new RegExp(`(?<![\\p{L}])${escapeRe(from)}(?![\\p{L}])`, "giu"), (m) =>
-      m[0] === m[0].toUpperCase() && m[0] !== m[0].toLowerCase() ? to.replace(/\p{L}/u, (c) => c.toUpperCase()) : to,
+    t = t.replace(new RegExp(`(^|[^\\p{L}])(${escapeRe(from)})(?![\\p{L}])`, "giu"), (_, pre, m) =>
+      pre + (m[0] === m[0].toUpperCase() && m[0] !== m[0].toLowerCase() ? to.replace(/\p{L}/u, (c) => c.toUpperCase()) : to),
     );
   }
   return t;

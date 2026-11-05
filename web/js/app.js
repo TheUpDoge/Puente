@@ -197,15 +197,28 @@ async function boot() {
   // Later packs override earlier ones, and index.json lists the Tejano packs first: reverse.
   install({ packs: [...app.content.packs].reverse(), courses: app.content.courses });
 
-  setupTabs();
-  setupTalk();
-  setupCut();
-  setupWords();
-  setupMap();
-  renderLearn();
+  // Each part starts on its own, so one broken piece can't take the whole app down.
+  const parts = [
+    ["tabs", setupTabs],
+    ["translator", setupTalk],
+    ["cut view", setupCut],
+    ["words", setupWords],
+    ["map", setupMap],
+    ["lessons", renderLearn],
+  ];
+  const broken = [];
+  for (const [name, start] of parts) {
+    try {
+      start();
+    } catch (err) {
+      console.error(`Puente: ${name} failed to start`, err);
+      broken.push(name);
+    }
+  }
 
   if (failed) {
-    fill($("stage"), 
+    fill(
+      $("stage"),
       h(
         "div",
         { class: "boot-error" },
@@ -215,7 +228,13 @@ async function boot() {
         ". The basic shop phrases still work.",
       ),
     );
+  } else if (broken.length) {
+    fill(
+      $("stage"),
+      h("div", { class: "boot-error" }, h("b", { text: "Part of Puente didn't start. " }), "Reload the page. If it keeps happening, this helps fix it: ", h("code", { text: broken.join(", ") })),
+    );
   }
+  window.__puenteBooted = true;
 
   window.__puente = { selfCheck, translate, dissect, submit: (text) => app.ear?.submit(text) };
 
@@ -270,7 +289,11 @@ function showTab(tab) {
   } catch {
     /* ignore */
   }
-  if (location.hash !== `#${tab}`) history.replaceState(null, "", `#${tab}`);
+  try {
+    if (location.hash !== `#${tab}`) history.replaceState(null, "", `#${tab}`);
+  } catch {
+    /* some embedded browsers forbid it; the tab still switches */
+  }
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -440,9 +463,13 @@ function setupCut() {
   const dialog = $("cut");
   $("open-cut").addEventListener("click", () => {
     renderCut();
-    dialog.showModal();
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
   });
-  $("cut-close").addEventListener("click", () => dialog.close());
+  $("cut-close").addEventListener("click", () => {
+    if (typeof dialog.close === "function") dialog.close();
+    else dialog.removeAttribute("open");
+  });
   $("cut-form").addEventListener("submit", (ev) => ev.preventDefault());
   $("cut-input").addEventListener("input", renderCut);
   for (const btn of dialog.querySelectorAll("[data-from]")) {

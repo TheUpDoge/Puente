@@ -1,7 +1,7 @@
 // Puente service worker: the whole app and its word lists are cached so it works with no signal.
 // Bump VERSION whenever a file below changes, so phones pick up the new copy.
 
-const VERSION = "puente-tx-v2";
+const VERSION = "puente-tx-v3";
 
 const SHELL = [
   "./",

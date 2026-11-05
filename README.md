@@ -44,14 +44,20 @@ It's static files: HTML, CSS, JavaScript modules and JSON. Serve the `web/` fold
 ```
 cd web
 npx serve .            # or: python3 -m http.server 8080
-npm test               # translator, course and content checks (Node 22+)
+npm test               # translator, course, dialect and content checks (Node 22+)
+npm run test:browser   # real-browser smoke test (needs Playwright)
 ```
 
 Open it on your phone and use **Add to Home Screen**. After the first visit it works with no signal.
 
 **Free hosting on GitHub Pages:** in the repo settings go to **Pages → Source: GitHub Actions**. Every
-push to `main` that touches `web/` then runs the tests and publishes the app
+push to `main` that touches `web/` then runs both test suites and publishes the app only if they pass
 (`.github/workflows/web.yml`).
+
+**Built to not break quietly.** Guard tests fail the build if a change would break older iPhones
+(regex lookbehind, unsupported before iOS 16.4), drop a file from the offline cache, or point the page at a
+missing file. Each tab starts on its own, so one broken piece can't blank the whole app, and opening
+`index.html` straight from disk explains what to do instead of showing a blank screen.
 
 ### Where the parts are
 

@@ -19,8 +19,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Translator, course and content tests
+      - name: Translator, course, dialect and content tests
         run: npm test
+        working-directory: web
+      - name: Install a browser for the smoke test
+        run: npm install --no-save playwright@1.63.0 && npx playwright install --with-deps chromium
+        working-directory: web
+      - name: Browser smoke test (boots, translates, quiz, words, map)
+        run: npm run test:browser
         working-directory: web
 
   # Publishes web/ to GitHub Pages from main. One-time setup: Settings → Pages → Source: GitHub Actions.

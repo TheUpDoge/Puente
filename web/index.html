@@ -171,6 +171,21 @@
     </dialog>
 
     <noscript><p class="noscript">Puente needs JavaScript turned on.</p></noscript>
+    <script>
+      // Plain script on purpose: it runs even where the app's modules can't load.
+      setTimeout(function () {
+        if (window.__puenteBooted) return;
+        var stage = document.getElementById("stage");
+        if (!stage) return;
+        var fromDisk = location.protocol === "file:";
+        stage.innerHTML =
+          '<div class="boot-error"><b>Puente didn\'t start.</b> ' +
+          (fromDisk
+            ? "It has to be opened from a web server, not straight from the file. In the web folder run <code>npx serve .</code> and open the address it prints."
+            : "This browser may be too old. Try a current Chrome, Safari, Edge or Firefox.") +
+          "</div>";
+      }, 4000);
+    </script>
     <script type="module" src="./js/app.js"></script>
   </body>
 </html>
