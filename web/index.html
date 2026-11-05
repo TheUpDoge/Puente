@@ -37,6 +37,9 @@
           <button type="button" role="tab" id="tab-words" aria-controls="words" data-tab="words" aria-selected="false">
             Palabras<small>Words</small>
           </button>
+          <button type="button" role="tab" id="tab-map" aria-controls="map" data-tab="map" aria-selected="false">
+            Mapa<small>Map</small>
+          </button>
         </nav>
       </header>
 
@@ -52,10 +55,9 @@
             </div>
           </div>
           <div class="talk-tools">
-            <div class="chips small" role="group" aria-label="Spanish style" id="dialect-chips">
-              <button type="button" data-dialect="tejano">Tejano</button>
-              <button type="button" data-dialect="formal">Formal</button>
-            </div>
+            <button type="button" class="dial-chip" id="dial-chip" aria-label="Where and how local: open the dialect map">
+              <span aria-hidden="true">📍</span><span id="dial-chip-text">Houston · Local</span><span class="caret" aria-hidden="true">›</span>
+            </button>
             <button type="button" class="link" id="open-cut">Open it up</button>
             <button type="button" class="link muted" id="clear-log">Clear</button>
           </div>
@@ -84,6 +86,40 @@
         <!-- LEARN -->
         <section class="pane learn" id="learn" role="tabpanel" aria-labelledby="tab-learn" hidden>
           <div id="learn-root" class="scroll"></div>
+        </section>
+
+        <!-- MAP -->
+        <section class="pane mapa" id="map" role="tabpanel" aria-labelledby="tab-map" hidden>
+          <div class="scroll" id="map-root">
+            <div class="map-intro">
+              <p class="eyebrow">Mapa del habla</p>
+              <h2>Where are you talking?</h2>
+              <p class="muted small">Tap a place and Puente changes its words, its voice and its ear to match. Then taper it: from textbook Spanish all the way to full local accent.</p>
+            </div>
+            <div class="map-art" id="map-art"></div>
+            <div class="chips scroll-x region-chips" id="region-chips" role="group" aria-label="Regions"></div>
+
+            <div class="taper">
+              <label class="eyebrow" for="taper">Taper · how local should Puente sound?</label>
+              <input type="range" id="taper" min="0" max="3" step="1" value="2" />
+              <div class="taper-stops" id="taper-stops" role="group" aria-label="Taper level"></div>
+              <p class="taper-tip" id="taper-tip"></p>
+            </div>
+
+            <article class="region-card" id="region-card"></article>
+
+            <h3 class="section-title">Hear it here</h3>
+            <ul class="samples" id="map-samples"></ul>
+
+            <h3 class="section-title">Same word, different places</h3>
+            <p class="muted small">Tap a place name to jump there.</p>
+            <ul class="compare" id="map-compare"></ul>
+
+            <p class="fine">
+              Regions are big and every family talks its own way. These are common patterns, not rules, and they're still being
+              checked by native speakers. Edit them in <code>web/js/dialects.js</code>.
+            </p>
+          </div>
         </section>
 
         <!-- WORDS -->

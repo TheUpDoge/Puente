@@ -2,6 +2,18 @@
 // Spanish prefers a U.S. Spanish voice (closest to Tejano), then Mexican, then any Spanish.
 
 let voices = [];
+let spanishPrefs = ["es-us", "es-mx", "es-419", "es"];
+let spanishRate = 0.95;
+
+/** The map's region picks which Spanish voice (accent) and pace Puente speaks with. */
+export function setVoiceStyle({ prefs, rate } = {}) {
+  if (Array.isArray(prefs) && prefs.length) spanishPrefs = [...prefs, "es-419", "es"];
+  if (Number.isFinite(rate)) spanishRate = rate;
+}
+
+export function spanishPace() {
+  return spanishRate;
+}
 
 function pull() {
   if (typeof speechSynthesis === "undefined") return;
@@ -20,7 +32,7 @@ export function canSpeak() {
 /** @param {"en" | "es"} lang */
 export function pickVoice(lang) {
   if (!voices.length) pull();
-  const prefs = lang === "es" ? ["es-us", "es-mx", "es-419", "es"] : ["en-us", "en-gb", "en"];
+  const prefs = lang === "es" ? spanishPrefs : ["en-us", "en-gb", "en"];
   for (const pref of prefs) {
     const voice = voices.find((item) => item.lang.toLowerCase().replace("_", "-").startsWith(pref));
     if (voice) return voice;
@@ -48,7 +60,7 @@ export function speak(text, lang, opts = {}) {
     const voice = pickVoice(lang);
     utter.lang = voice?.lang ?? speechLang(lang);
     if (voice) utter.voice = voice;
-    utter.rate = opts.rate ?? 0.95;
+    utter.rate = opts.rate ?? (lang === "es" ? spanishRate : 0.95);
     utter.onstart = () => opts.onstart?.();
     utter.onend = () => resolve(true);
     utter.onerror = () => resolve(false);

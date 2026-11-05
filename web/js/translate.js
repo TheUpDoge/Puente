@@ -6,7 +6,8 @@
 // - Unknown words are left out, never mixed in ("hello how are you doing" → "hola cómo estás").
 
 import { EN_ALIASES, NOUNS, PHRASES, SAFETY } from "./lexicon.js";
-import { FORMAL_NOUNS, FORMAL_WORDS, TEJANO_NOUNS, TEJANO_PHRASES, TEJANO_SAFETY } from "./tejano.js";
+import { TEJANO_NOUNS, TEJANO_PHRASES, TEJANO_SAFETY } from "./tejano.js";
+import { cleanDial, DEFAULT_DIAL, soundsLike, toDialect } from "./dialects.js";
 import { loose, normalize, tokens } from "./normalize.js";
 
 /** @typedef {"en" | "es"} Lang */
@@ -197,7 +198,7 @@ const WEAK_OVERLAP = new Set([
 ]);
 
 const QUESTION =
-  /^(what|where|when|who|why|how|which|can|could|would|do|does|did|is|are|will|should|donde|cuanto|cuantos|cuanta|como|cuando|quien|por que|cual|a donde|a que|quieres|tienes|ya pagaste|ya checaste|mande)\b/;
+  /^(what|where|when|who|why|how(?! (?:cool|pretty|cute|nice|lovely|awesome|sad|weird|funny)\b)|which|can|could|would|do|does|did|is|are|will|should|donde|cuanto|cuantos|cuanta|como|cuando|quien|por que|cual|a donde|a que|quieres|tienes|ya pagaste|ya checaste|mande)\b/;
 
 /** Marker-word evidence for each language. */
 export function langEvidence(text, fallback) {
@@ -348,46 +349,11 @@ function shape(text, to, question, bang) {
   return capFirst(t);
 }
 
-// ---- Tejano → formal --------------------------------------------------------------------------
+// ---- Tejano → formal ---------------------------------------------------------------------------
 
-const GENDER_ARTICLES = {
-  m: ["el", "un", "este", "ese", "aquel"],
-  f: ["la", "una", "esta", "esa", "aquella"],
-  mp: ["los", "unos", "estos", "esos", "aquellos"],
-  fp: ["las", "unas", "estas", "esas", "aquellas"],
-};
-
-function escapeRe(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function wordRe(phrase) {
-  return new RegExp(`(?<![\\p{L}\\p{N}])${escapeRe(phrase)}(?![\\p{L}\\p{N}])`, "giu");
-}
-
-let formalRules = null;
-
-function buildFormal() {
-  const rules = [];
-  for (const [from, to] of FORMAL_WORDS) rules.push([from, to]);
-  for (const [from, to, g1, g2] of FORMAL_NOUNS) {
-    if (g1 !== g2) {
-      const a1 = GENDER_ARTICLES[g1] ?? [];
-      const a2 = GENDER_ARTICLES[g2] ?? [];
-      for (let i = 0; i < a1.length; i++) rules.push([`${a1[i]} ${from}`, `${a2[i]} ${to}`]);
-    }
-    rules.push([from, to]);
-  }
-  rules.sort((a, b) => b[0].length - a[0].length);
-  return rules.map(([from, to]) => [wordRe(from), to]);
-}
-
-/** Tejano Spanish → textbook Mexican Spanish. Leaves anything it doesn't know alone. */
+/** Tejano Spanish → textbook Spanish. Leaves anything it doesn't know alone. */
 export function toFormal(text) {
-  formalRules ??= buildFormal();
-  let t = String(text ?? "");
-  for (const [re, to] of formalRules) t = t.replace(re, to);
-  return tidy(t);
+  return tidy(toDialect(String(text ?? ""), DEFAULT_DIAL.region, 0));
 }
 
 // ---- Notes ------------------------------------------------------------------------------------
@@ -447,18 +413,36 @@ export function dissect(raw, from, opts = {}) {
   const question = /\?/.test(raw) || QUESTION.test(norm);
   const safety = isSafety(norm);
   const bang = /!/.test(raw) || safety;
-  const empty = { from, to, text: "", formal: null, notes: [], coverage: 0, own: 0, exact: false, safety: false, pieces: [] };
+  const empty = { from, to, text: "", formal: null, local: null, sounds: null, voiced: null, notes: [], coverage: 0, own: 0, exact: false, safety: false, pieces: [] };
   if (!norm) return empty;
 
+  const dial = cleanDial(opts.dial ?? DEFAULT_DIAL);
   const finish = (joined, coverage, own, exact, pieces) => {
-    const text = joined ? shape(joined, to, question, bang) : "";
+    let text = "";
     let formal = null;
-    if (text && to === "es") {
-      const f = shape(toFormal(joined), to, question, bang);
+    let local = null;
+    let sounds = null;
+    let voiced = null;
+    let said = joined;
+    if (joined && to === "es") {
+      said = toDialect(joined, dial.region, dial.level);
+      text = shape(said, to, question, bang);
+      const f = shape(toDialect(joined, dial.region, 0), to, question, bang);
       if (normalize(f) !== normalize(text)) formal = f;
+      const l = shape(toDialect(joined, dial.region, 2), to, question, bang);
+      if (normalize(l) !== normalize(text)) local = l;
+      if (dial.level >= 3) {
+        const s = soundsLike(text, dial.region);
+        if (s.display !== text) {
+          sounds = s.display;
+          voiced = s.voiced;
+        }
+      }
+    } else if (joined) {
+      text = shape(joined, to, question, bang);
     }
-    const notes = notesFor(norm, from, to === "es" ? soft(joined) : "", reader);
-    return { from, to, text, formal, notes, coverage, own, exact, safety, pieces };
+    const notes = notesFor(norm, from, to === "es" ? soft(said) : "", reader);
+    return { from, to, text, formal, local, sounds, voiced, notes, coverage, own, exact, safety, pieces };
   };
 
   const whole = lookup(from, norm);
@@ -538,6 +522,9 @@ export function translate(raw, from, opts) {
   return {
     text: hit.text,
     formal: hit.formal,
+    local: hit.local,
+    sounds: hit.sounds,
+    voiced: hit.voiced,
     notes: hit.notes,
     coverage: hit.coverage,
     exact: hit.exact,

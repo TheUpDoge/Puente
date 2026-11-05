@@ -13,11 +13,12 @@ There are two builds in this repo:
 
 ## Puente Tejano (web app)
 
-Three tabs:
+Four tabs:
 
 - **Traduce (Translate).** Talk or type. **Me** locks the ear to English, **Them** to Spanish. The big line
-  stays on screen so you can turn the phone around. Spanish comes out Tejano first (*parquea la troca*)
-  with the formal version underneath (*estaciona la camioneta*). Flip **Tejano / Formal** to swap them.
+  stays on screen so you can turn the phone around. Spanish comes out the way the place you picked on
+  the map says it (*parquea la troca* in Houston), with the formal version underneath
+  (*estaciona la camioneta*).
   Spanglish is welcome: in "oye, where is la troca?" the words already in the target language are kept
   as said, so the result is always one clean language. **Open it up** shows how a line was cut.
 - **Aprende (Learn).** *Tejano 101* with Tía Lupe: 8 lessons, 80 lines (greetings, la familia, Spanglish
@@ -27,6 +28,13 @@ Three tabs:
 - **Palabras (Words).** Search every word list: Tejano & Tex-Mex, Chicano Caló, Southeast Texas life &
   work (plants, refineries, hurricanes), Mexican and Cuban slang, shop talk. Each entry has notes on
   tone, a formal equivalent, and a warning when a word can offend.
+- **Mapa (Map).** Tap where you're talking: Houston & the Golden Triangle, San Antonio, El Valle,
+  El Paso, Monterrey, Mexico City, or Miami & Cuba. Puente switches its words (*troca* / *camioneta*,
+  *bus* / *camión* / *guagua*, *feria* / *lana* / *baro*), the Spanish voice it speaks with, and the
+  Spanish its ear listens for. Then **taper** it: Formal → Light → Local → Full accent. At Full
+  accent you also see how the line sounds in relaxed talk (*¿Cómo ehtáh?* in Havana, *'tá bien* in
+  Houston), and Puente says it that way. Lines already on screen change with you. "Same word,
+  different places" compares the words that change the most.
 
 ### Run it
 
@@ -52,7 +60,8 @@ push to `main` that touches `web/` then runs the tests and publishes the app
 | Screens | `web/index.html`, `web/js/app.js`, `web/css/puente.css` | Three tabs, no framework |
 | Ear | `web/js/ear.js` | Mic, pause, echo guard, Me / Them, speaks once (listens in es-US, falls back to es-MX) |
 | Cutter | `web/js/translate.js` | Longest match, one language out, code-switch keep, Tejano → formal, notes |
-| Tejano layer | `web/js/tejano.js` | Tejano phrases and nouns, plus the Tejano → formal swap list |
+| Tejano layer | `web/js/tejano.js` | Tejano phrases and nouns: what Puente says by default |
+| Dialect map | `web/js/dialects.js`, `web/js/map-data.js` | Regions, taper levels, word swaps per region, "sounds like" rules, map outlines |
 | Base book | `web/js/lexicon.js` | Shop-floor phrases and nouns from the Grok build |
 | Course engine | `web/js/course.js` | Quiz builder, grading, flashcard boxes, XP and streak |
 | Word lists | `web/content/phrasebook/*.json` | Same format the Android app reads |
@@ -72,7 +81,11 @@ push to `main` that touches `web/` then runs the tests and publishes the app
 - **The ear is the browser's.** Chrome and Safari listen well. Some browsers send audio to their
   speech service; Chrome uses on-device recognition where the phone supports it. Firefox has no ear
   yet, but typing works.
-- **Voices vary.** Audio uses the phone's Spanish voice (U.S. Spanish if installed, else Mexican).
+- **Voices vary.** Audio uses the phone's Spanish voices: the map picks U.S., Mexican or Caribbean
+  Spanish if the phone has that voice installed. A voice can't really do a Havana or Chihuahua accent;
+  Full accent gets close by reading the relaxed spelling (it can't say *sh* for *ch*, so El Paso's
+  *sh* is shown but not spoken).
+- **Regions are big.** The map shows common patterns, not rules. Every family talks its own way.
 
 ## Android alpha
 

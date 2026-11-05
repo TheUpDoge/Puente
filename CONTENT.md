@@ -101,10 +101,24 @@ How the web app uses types:
 - `work`: used both ways, note shows for either language. With `annotate_only: true` it only adds the
   note and never changes the translation.
 
-**Tejano first, formal beside it.** What Puente *says* in Spanish comes from `web/js/tejano.js` and
-`web/js/lexicon.js` (Tejano wording first). `FORMAL_WORDS` and `FORMAL_NOUNS` in `tejano.js` turn that
-into textbook Spanish for the "Formal" line. When a noun changes gender (*la traila → el remolque*),
-list both genders and the article is fixed for you.
+**Tejano first, then the map.** What Puente *says* in Spanish starts in `web/js/tejano.js` and
+`web/js/lexicon.js` (Southeast Texas wording). `DIAL_WORDS` in `web/js/dialects.js` then reshapes it
+for the region and taper level picked on the map:
+
+```js
+{ id: "bus", en: "bus", level: 1, show: true, base: ["bus"],
+  forms: { tx: "bus", mx: "camión", caribe: "guagua", formal: "autobús" } }
+```
+
+- `base`: the word(s) the lexicon says. Arrays line up: `forms.formal[2]` replaces `base[2]`.
+- `forms`: by region id (`houston`, `sanantonio`, `valle`, `elpaso`, `norte`, `centro`, `caribe`),
+  by group (`tx`, `mx`, `caribe`), and `formal` (required). A region with no form uses `formal`.
+- `level`: 1 = everyday regional word, 2 = local slang. Below that taper level, `formal` is used.
+- `det: true`: only swap after el / la / mi … (for words that are also verbs, like *trabajo*).
+- `show: true`: list it under "Same word, different places".
+- If a swap changes a noun's gender, add both words to `GENDER` and the article follows
+  (*la traila → el remolque*, *el bus → la guagua*).
+- `WORD_SWAPS` and the small functions under them are the Full accent "sounds like" rules.
 
 **Courses** (web app) add: `teacher` (`name`, `hello`), and per lesson `icon` (one emoji), `subtitle`,
 `tia` (the teacher's intro) and per item `std` (formal version). Each lesson needs at least 4 items

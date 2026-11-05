@@ -42,7 +42,7 @@ test("the service worker caches every content file", () => {
     assert.ok(existsSync(join(web, "content", rel)), `${rel} is missing`);
     assert.ok(sw.includes(`./content/${rel}`), `sw.js does not cache ${rel}`);
   }
-  for (const rel of ["js/app.js", "js/translate.js", "js/tejano.js", "css/puente.css", "icons/icon-192.png"]) {
+  for (const rel of ["js/app.js", "js/translate.js", "js/tejano.js", "js/dialects.js", "js/map-data.js", "css/puente.css", "icons/icon-192.png"]) {
     assert.ok(existsSync(join(web, rel)), `${rel} is missing`);
     assert.ok(sw.includes(`./${rel}`), `sw.js does not cache ${rel}`);
   }

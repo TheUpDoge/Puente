@@ -1,14 +1,15 @@
 // The ear: keeps the mic open, folds growing guesses into one sentence, waits for a pause,
-// then speaks the translation once. Ported from the Grok build, with a Tejano ear (es-US) and
-// a dialect switch (Tejano or formal Spanish out loud).
+// then speaks the translation once. Ported from the Grok build. The dialect map sets the dial:
+// which region's words, ear (es-US or es-MX) and voice to use, and how local it should sound.
 
 import { detectLang, foldHeard, langEvidence, sameUtterance, translate } from "./translate.js";
 import { normalize, tokens } from "./normalize.js";
-import { pickVoice, recognizer } from "./voice.js";
+import { pickVoice, recognizer, setVoiceStyle, spanishPace } from "./voice.js";
+import { cleanDial, regionById } from "./dialects.js";
 
 /** @typedef {"en" | "es"} Lang */
 /** @typedef {"auto" | Lang} Lock */
-/** @typedef {"tejano" | "formal"} Dialect */
+/** @typedef {{ region: string, level: number }} Dial */
 
 const FILLERS = new Set(["uh", "um", "hmm", "huh", "eh", "ah", "oh", "er", "erm", "mhm", "mmm", "hm", "este", "pos", "pues"]);
 const STORE = "puente-tx-session-v1";
@@ -49,7 +50,7 @@ export function freshState() {
     status: "idle",
     lock: "auto",
     voice: true,
-    dialect: "tejano",
+    dial: { region: "houston", level: 2 },
     speaking: false,
     holding: false,
     localEar: false,
@@ -67,7 +68,7 @@ export class Ear {
     this.status = "idle";
     this.lock = "auto";
     this.voice = true;
-    this.dialect = "tejano";
+    this.dial = cleanDial();
     this.speaking = false;
     this.localReady = false;
     this.ui = uiLang();
@@ -99,7 +100,9 @@ export class Ear {
     const stored = loadStore();
     if (stored.lock === "auto" || stored.lock === "en" || stored.lock === "es") this.lock = stored.lock;
     if (typeof stored.voice === "boolean") this.voice = stored.voice;
-    if (stored.dialect === "tejano" || stored.dialect === "formal") this.dialect = stored.dialect;
+    if (stored.dial) this.dial = cleanDial(stored.dial);
+    else if (stored.dialect === "formal") this.dial = cleanDial({ level: 0 });
+    this.applyRegion();
     if (Array.isArray(stored.lines)) {
       this.lines = stored.lines
         .filter((line) => line && typeof line.original === "string" && typeof line.translation === "string")
@@ -110,8 +113,9 @@ export class Ear {
           original: line.original,
           translation: line.translation,
           alt: typeof line.alt === "string" ? line.alt : null,
-          tejano: typeof line.tejano === "string" ? line.tejano : line.translation,
-          formal: typeof line.formal === "string" ? line.formal : null,
+          altKind: line.altKind === "local" ? "local" : "formal",
+          sounds: typeof line.sounds === "string" ? line.sounds : null,
+          voiced: typeof line.voiced === "string" ? line.voiced : null,
           notes: Array.isArray(line.notes) ? line.notes.filter((n) => n && typeof n.es === "string") : [],
           coverage: typeof line.coverage === "number" ? line.coverage : 1,
           exact: Boolean(line.exact),
@@ -137,7 +141,7 @@ export class Ear {
       status: this.status,
       lock: this.lock,
       voice: this.voice,
-      dialect: this.dialect,
+      dial: { ...this.dial },
       speaking: this.speaking,
       holding: this.pending !== null && !this.speaking,
       localEar: this.localReady,
@@ -192,17 +196,39 @@ export class Ear {
     this.push();
   }
 
-  setDialect(dialect) {
-    if (dialect !== "tejano" && dialect !== "formal") return;
-    this.dialect = dialect;
+  /** Region and taper from the map. Lines already on screen are said again the new way. */
+  setDial(dial) {
+    const next = cleanDial({ ...this.dial, ...dial });
+    const regionChanged = next.region !== this.dial.region;
+    this.dial = next;
+    this.applyRegion();
     for (const line of this.lines) {
-      if (!line.formal) continue;
-      const { say, alt } = this.pick({ text: line.tejano, formal: line.formal });
-      line.translation = say;
-      line.alt = alt;
+      if (line.lang !== "en") continue;
+      const hit = translate(line.original, "en", this.opts());
+      Object.assign(line, this.shapeLine(hit));
+      line.notes = hit.notes;
     }
     this.persist();
     this.push();
+    if (regionChanged && this.running) this.restartRec();
+  }
+
+  applyRegion() {
+    const region = regionById(this.dial.region);
+    this.esCode = region.ear;
+    setVoiceStyle({ prefs: region.voice, rate: region.rate });
+  }
+
+  opts() {
+    return { reader: this.ui, dial: this.dial };
+  }
+
+  /** Main line, the other wording to show under it, and the relaxed "sounds like" version. */
+  shapeLine(hit) {
+    if (this.dial.level === 0) {
+      return { translation: hit.text, alt: hit.local, altKind: "local", sounds: null, voiced: null };
+    }
+    return { translation: hit.text, alt: hit.formal, altKind: "formal", sounds: hit.sounds, voiced: hit.voiced };
   }
 
   clear() {
@@ -238,10 +264,10 @@ export class Ear {
   replay(id) {
     const line = this.lines.find((item) => item.id === id);
     if (!line || !line.translation) return;
-    this.lastSpokenTranslation = line.translation;
+    this.lastSpokenTranslation = line.voiced || line.translation;
     this.lastSpokenSource = line.original;
     this.lastOut = line.lang === "en" ? "es" : "en";
-    this.utter(line.translation, this.lastOut, line.safety);
+    this.utter(this.lastSpokenTranslation, this.lastOut, line.safety);
   }
 
   push() {
@@ -250,7 +276,7 @@ export class Ear {
 
   persist() {
     try {
-      const payload = { voice: this.voice, lock: this.lock, dialect: this.dialect, lines: this.lines.slice(-40) };
+      const payload = { voice: this.voice, lock: this.lock, dial: this.dial, lines: this.lines.slice(-40) };
       localStorage.setItem(STORE, JSON.stringify(payload));
     } catch {
       /* private mode */
@@ -264,12 +290,6 @@ export class Ear {
 
   bcp(lang) {
     return lang === "en" ? "en-US" : this.esCode;
-  }
-
-  pick(hit) {
-    const tejano = hit.text;
-    if (this.dialect === "formal" && hit.formal) return { say: hit.formal, alt: tejano };
-    return { say: tejano, alt: hit.formal };
   }
 
   openAndStart() {
@@ -378,7 +398,7 @@ export class Ear {
     }
     if (error === "language-not-supported") {
       // No U.S. Spanish model here: fall back to Mexican Spanish, then to the cloud ear.
-      if (this.heardLang() === "es" && this.esCode === "es-US") this.esCode = "es-MX";
+      if (this.heardLang() === "es" && this.esCode !== "es-MX") this.esCode = "es-MX";
       else this.localReady = false;
       this.rec = null;
       this.endReason = "dead";
@@ -462,8 +482,8 @@ export class Ear {
     const pending = this.pending;
     if (!pending) return;
     pending.lang = this.lock === "auto" ? detectLang(pending.original, this.heardLang()) : this.lock;
-    const hit = translate(pending.original, pending.lang, { reader: this.ui });
-    this.live = { lang: pending.lang, original: pending.original, translation: this.pick(hit).say };
+    const hit = translate(pending.original, pending.lang, this.opts());
+    this.live = { lang: pending.lang, original: pending.original, translation: hit.text };
     if (pending.at === now) this.armSettle(hit.safety);
     this.push();
   }
@@ -503,16 +523,12 @@ export class Ear {
   }
 
   commit(text, lang, force) {
-    const hit = translate(text, lang, { reader: this.ui });
-    const { say, alt } = this.pick(hit);
+    const hit = translate(text, lang, this.opts());
     const line = {
       id: `l${this.seq++}`,
       lang,
       original: text,
-      translation: say,
-      alt,
-      tejano: hit.text,
-      formal: hit.formal,
+      ...this.shapeLine(hit),
       notes: hit.notes,
       coverage: hit.coverage,
       exact: hit.exact,
@@ -544,10 +560,10 @@ export class Ear {
     this.lastSpokenNorm = normSay;
     this.lastSpokenAt = Date.now();
     this.lastSpokenSource = line.original;
-    this.lastSpokenTranslation = say;
+    this.lastSpokenTranslation = line.voiced || say;
     this.lastOut = line.lang === "en" ? "es" : "en";
     if (this.lock === "auto") this.replyEar = line.lang === "en" ? "es" : "en";
-    this.utter(say, this.lastOut, line.safety);
+    this.utter(this.lastSpokenTranslation, this.lastOut, line.safety);
   }
 
   utter(text, lang, safety) {
@@ -557,7 +573,7 @@ export class Ear {
     const voice = pickVoice(lang);
     utter.lang = voice?.lang ?? (lang === "es" ? "es-US" : "en-US");
     if (voice) utter.voice = voice;
-    utter.rate = safety ? 1.02 : 0.96;
+    utter.rate = safety ? 1.02 : lang === "es" ? spanishPace() : 0.96;
     utter.onstart = () => {
       if (gen !== this.speakGen) return;
       this.pauseEar();
@@ -609,7 +625,7 @@ export class Ear {
   async tryLocal() {
     const Ctor = recognizer();
     if (!Ctor?.available) return;
-    const opts = { langs: ["en-US", "es-US"], processLocally: true, quality: "dictation" };
+    const opts = { langs: ["en-US", this.esCode], processLocally: true, quality: "dictation" };
     try {
       let status = await Ctor.available(opts);
       if (status === "unavailable") {

@@ -1,7 +1,7 @@
 // Puente service worker: the whole app and its word lists are cached so it works with no signal.
 // Bump VERSION whenever a file below changes, so phones pick up the new copy.
 
-const VERSION = "puente-tx-v1";
+const VERSION = "puente-tx-v2";
 
 const SHELL = [
   "./",
@@ -10,6 +10,8 @@ const SHELL = [
   "./css/puente.css",
   "./js/app.js",
   "./js/course.js",
+  "./js/dialects.js",
+  "./js/map-data.js",
   "./js/ear.js",
   "./js/lexicon.js",
   "./js/normalize.js",

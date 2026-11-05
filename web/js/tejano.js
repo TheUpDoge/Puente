@@ -1,8 +1,8 @@
 // The Tejano layer: Southeast & South Texas Spanish, Tex-Mex Spanglish and Chicano everyday talk.
 //
 // TEJANO_PHRASES and TEJANO_NOUNS are read before the base lexicon, so when both know a phrase
-// the Tejano wording wins. FORMAL turns Tejano output into textbook Mexican Spanish, so every
-// line can be shown both ways ("parquea la troca" / "estaciona la camioneta").
+// the Tejano wording wins. dialects.js then reshapes that Spanish for the region and taper level
+// picked on the map, so a line can be Houston Spanglish or textbook ("estaciona la camioneta").
 //
 // Status: starter, needs native review. Please have Tejano speakers check before a public release.
 
@@ -43,6 +43,16 @@ export const TEJANO_PHRASES = [
   ["congratulations", "felicidades"],
   ["just", "nomás"],
   ["i just wanted to know", "nomás quería saber"],
+  ["cool", "chido"],
+  ["that is cool", "qué chido"],
+  ["how cool", "qué chido"],
+  ["awesome", "chido"],
+  ["i need money", "necesito dinero"],
+  ["do you have money", "tienes dinero"],
+  ["the kids are here", "los niños están aquí"],
+  ["where are the kids", "dónde están los niños"],
+  ["take the bus", "agarra el bus"],
+  ["where is the bus stop", "dónde para el bus"],
 
   // Tex-Mex Spanglish verbs
   ["park the truck", "parquea la troca"],
@@ -232,6 +242,7 @@ export const TEJANO_NOUNS = [
   { en: "bridge", es: "puente", art: "el" },
   { en: "freeway", es: "freeway", art: "la" },
   { en: "traffic", es: "tráfico", art: "el" },
+  { en: "bus", es: "bus", art: "el" },
   { en: "doctor", es: "doctor", art: "el" },
   { en: "clinic", es: "clínica", art: "la" },
   { en: "pharmacy", es: "farmacia", art: "la" },
@@ -319,101 +330,4 @@ export const TEJANO_SAFETY = [
   "da la vuelta no te ahogues",
   "aguas con el andamio",
   "aguas con el montacargas",
-];
-
-// ---------------------------------------------------------------------------------------------
-// Tejano → formal (textbook Mexican Spanish)
-
-/** Word or phrase swaps. Matched on whole words, accents included. Longest first is automatic. */
-export const FORMAL_WORDS = [
-  ["parquear", "estacionar"],
-  ["parquea", "estaciona"],
-  ["parqueé", "estacioné"],
-  ["parqueaste", "estacionaste"],
-  ["parqueo", "estaciono"],
-  ["parqueó", "estacionó"],
-  ["chequea", "revisa"],
-  ["chequear", "revisar"],
-  ["chequéalo", "revísalo"],
-  ["chequéala", "revísala"],
-  ["cuitear", "renunciar"],
-  ["ya cuiteé", "ya renuncié"],
-  ["cuiteé", "renuncié"],
-  ["cuiteó", "renunció"],
-  ["mapear", "trapear"],
-  ["mapea", "trapea"],
-  ["púchale", "empújale"],
-  ["puchar", "empujar"],
-  ["cashear", "cambiar"],
-  ["cashea", "cambia"],
-  ["textéame", "mándame un mensaje"],
-  ["te texteo", "te mando un mensaje"],
-  ["textear", "mandar mensajes"],
-  ["lonchar", "almorzar"],
-  ["aplica para el jale", "solicita el trabajo"],
-  ["ya apliqué", "ya hice la solicitud"],
-  ["apúrale", "apúrate"],
-  ["de volada", "ahora mismo"],
-  ["ya merito", "ya casi"],
-  ["no hay bronca", "no hay problema"],
-  ["aguas con", "cuidado con"],
-  ["aguas", "cuidado"],
-  ["échame la mano", "ayúdame"],
-  ["hazme un paro", "hazme un favor"],
-  ["recula", "da reversa"],
-  ["ahí te watcho", "nos vemos"],
-  ["ahí nos vemos", "nos vemos"],
-  ["aquí nomás", "aquí nada más"],
-  ["nomás", "nada más"],
-  ["ándale pues", "de acuerdo"],
-  ["qué onda", "qué tal"],
-  ["picoso", "picante"],
-  ["picosa", "picante"],
-  ["mijo", "mi hijo"],
-  ["mija", "mi hija"],
-  ["mi jefita", "mi mamá"],
-  ["mi jefito", "mi papá"],
-  ["overtime", "tiempo extra"],
-  ["agarra la", "toma la"],
-  ["súbete a la", "entra a la"],
-  ["dobla en la luz", "dobla en el semáforo"],
-  ["este fin", "este fin de semana"],
-  ["ya checaste", "ya registraste tu entrada"],
-  ["checa tu entrada", "registra tu entrada"],
-  ["checa tu salida", "registra tu salida"],
-  ["qué onda primo", "qué tal primo"],
-  ["qué onda ese", "qué tal amigo"],
-];
-
-/**
- * Noun swaps that may change gender, so the article in front changes too:
- * [tejano, formal, tejano gender, formal gender]. Gender: "m", "f", "mp", "fp".
- */
-export const FORMAL_NOUNS = [
-  ["troca", "camioneta", "f", "f"],
-  ["trocas", "camionetas", "fp", "fp"],
-  ["traila", "remolque", "f", "m"],
-  ["trailas", "remolques", "fp", "mp"],
-  ["yarda", "patio", "f", "m"],
-  ["aseguranza", "seguro", "f", "m"],
-  ["lonche", "almuerzo", "m", "m"],
-  ["wela", "abuela", "f", "f"],
-  ["welo", "abuelo", "m", "m"],
-  ["nina", "madrina", "f", "f"],
-  ["nino", "padrino", "m", "m"],
-  ["mayordomo", "supervisor", "m", "m"],
-  ["biles", "cuentas", "mp", "fp"],
-  ["brecas", "frenos", "fp", "mp"],
-  ["dompe", "camión de volteo", "m", "m"],
-  ["cora", "moneda de 25 centavos", "f", "f"],
-  ["raspa", "raspado", "f", "m"],
-  ["zacate", "césped", "m", "m"],
-  ["freeway", "autopista", "f", "f"],
-  ["pachanga", "fiesta", "f", "f"],
-  ["pulga", "mercado de pulgas", "f", "m"],
-  ["marqueta", "mercado", "f", "m"],
-  ["chamba", "trabajo", "f", "m"],
-  ["jale", "trabajo", "m", "m"],
-  ["carnal", "mejor amigo", "m", "m"],
-  ["turnaround", "paro de planta", "m", "m"],
 ];

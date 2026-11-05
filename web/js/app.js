@@ -2,7 +2,9 @@
 
 import { dissect, entries, install, noteText, selfCheck, translate } from "./translate.js";
 import { Ear } from "./ear.js";
-import { canSpeak, listenOnce, recognizer, speak } from "./voice.js";
+import { canSpeak, listenOnce, pickVoice, recognizer, speak } from "./voice.js";
+import { compare, LEVELS, REGIONS, regionById } from "./dialects.js";
+import { CITIES_INSET, CUBA, FLORIDA, HEIGHT, insetFrame, MEXICO, pathOf, project, RIVER, TEXAS, USA, WIDTH } from "./map-data.js";
 import { loose } from "./normalize.js";
 import * as C from "./course.js";
 
@@ -84,7 +86,7 @@ const COPY = {
     again: "Again",
     missed: "Didn't catch that",
     formal: "Formal",
-    tejano: "Tejano",
+    sounds: "Sounds like",
     pads: [
       ["Aguas", "watch out"],
       ["¿Qué onda?", "what is up"],
@@ -119,7 +121,7 @@ const COPY = {
     again: "Otra vez",
     missed: "No entendí",
     formal: "Formal",
-    tejano: "Tejano",
+    sounds: "Suena así",
     pads: [
       ["Aguas", "watch out"],
       ["¿Qué onda?", "what is up"],
@@ -199,6 +201,7 @@ async function boot() {
   setupTalk();
   setupCut();
   setupWords();
+  setupMap();
   renderLearn();
 
   if (failed) {
@@ -224,7 +227,7 @@ async function boot() {
 // ---------------------------------------------------------------------------------------------
 // Tabs
 
-const TABS = ["talk", "learn", "words"];
+const TABS = ["talk", "learn", "words", "map"];
 
 function setupTabs() {
   for (const btn of document.querySelectorAll(".tabs [data-tab]")) {
@@ -280,9 +283,7 @@ function setupTalk() {
   for (const btn of $("lock-chips").querySelectorAll("[data-lock]")) {
     btn.addEventListener("click", () => app.ear.setLock(btn.dataset.lock));
   }
-  for (const btn of $("dialect-chips").querySelectorAll("[data-dialect]")) {
-    btn.addEventListener("click", () => app.ear.setDialect(btn.dataset.dialect));
-  }
+  $("dial-chip").addEventListener("click", () => showTab("map"));
   $("turn-me").addEventListener("click", () => app.ear.setLock("en"));
   $("turn-them").addEventListener("click", () => app.ear.setLock("es"));
   $("start").addEventListener("click", () => app.ear.activate());
@@ -304,8 +305,10 @@ function setupTalk() {
   });
 
   app.ear = new Ear((state) => {
+    const dialChanged = app.earState && (state.dial.region !== app.earState.dial.region || state.dial.level !== app.earState.dial.level);
     app.earState = state;
     renderTalk(state);
+    if (dialChanged) updateMap();
   });
 
   const copy = COPY[app.earState.ui];
@@ -331,9 +334,8 @@ function renderTalk(state) {
   for (const btn of $("lock-chips").querySelectorAll("[data-lock]")) {
     btn.setAttribute("aria-pressed", String(btn.dataset.lock === state.lock));
   }
-  for (const btn of $("dialect-chips").querySelectorAll("[data-dialect]")) {
-    btn.setAttribute("aria-pressed", String(btn.dataset.dialect === state.dialect));
-  }
+  const region = regionById(state.dial.region);
+  $("dial-chip-text").textContent = `${region.short} · ${LEVELS[state.dial.level].name}`;
   $("turn-me").textContent = copy.me;
   $("turn-them").textContent = copy.them;
   $("turn-me").setAttribute("aria-pressed", String(state.lock === "en"));
@@ -394,11 +396,12 @@ function renderTalk(state) {
       h("p", { class: "orig", lang: state.live.lang, text: state.live.original }),
     );
   } else if (shown) {
-    const altLabel = state.dialect === "formal" ? copy.tejano : copy.formal;
+    const altLabel = shown.altKind === "local" ? region.short : copy.formal;
     fill(stage, 
       h("span", { class: shown.lang === "en" ? "tag-en" : "tag-es", text: tagFor(shown.lang) }),
       h("p", { class: "big", lang: shown.lang === "en" ? "es" : "en", text: shown.translation }),
       h("p", { class: "orig", lang: shown.lang, text: shown.original }),
+      shown.sounds ? h("p", { class: "alt sounds", lang: "es" }, h("b", { text: copy.sounds }), shown.sounds) : null,
       shown.alt ? h("p", { class: "alt", lang: "es" }, h("b", { text: altLabel }), shown.alt) : null,
       shown.notes.length ? h("ul", { class: "notes" }, ...shown.notes.map(noteItem)) : null,
       h("div", { class: "row" }, h("button", { type: "button", class: "pill", onclick: () => app.ear.again() }, copy.again)),
@@ -1048,6 +1051,238 @@ function renderWords() {
         e.std ? h("span", { class: "std", lang: "es", text: `Formal: ${e.std}` }) : null,
       ),
     ),
+  );
+}
+
+// ---------------------------------------------------------------------------------------------
+// Map tab: tap where you're talking, taper how local it sounds.
+
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+function s(tag, attrs = {}, ...kids) {
+  const el = document.createElementNS(SVG_NS, tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "text") el.textContent = v;
+    else if (k.startsWith("on") && typeof v === "function") el.addEventListener(k.slice(2), v);
+    else el.setAttribute(k, String(v));
+  }
+  for (const kid of kids.flat()) if (kid) el.append(kid);
+  return el;
+}
+
+const MAP_SAMPLES = [
+  "what's up cousin",
+  "park the truck",
+  "what time is lunch",
+  "where is the bus",
+  "I need money",
+  "the kids are here",
+  "alright then",
+  "that is fine",
+  "how are you",
+];
+
+const HALO = [0, 120, 82, 54];
+
+function setupMap() {
+  const range = $("taper");
+  range.addEventListener("input", () => app.ear.setDial({ level: Number(range.value) }));
+  fill(
+    $("taper-stops"),
+    LEVELS.map((lv) =>
+      h("button", { type: "button", "data-level": lv.id, onclick: () => app.ear.setDial({ level: lv.id }) }, lv.name),
+    ),
+  );
+  fill(
+    $("region-chips"),
+    REGIONS.map((r) => h("button", { type: "button", "data-region": r.id, onclick: () => pickRegion(r.id) }, r.short)),
+  );
+  updateMap();
+}
+
+function pickRegion(id) {
+  app.ear.setDial({ region: id });
+}
+
+function hotspot(region, x, y, selected) {
+  const { dx, dy, anchor } = region.label;
+  return s(
+    "g",
+    {
+      class: `spot ${selected ? "on" : ""}`,
+      role: "button",
+      tabindex: 0,
+      "aria-label": `${region.name}${selected ? " (selected)" : ""}`,
+      "aria-pressed": String(selected),
+      onclick: () => pickRegion(region.id),
+      onkeydown: (ev) => {
+        if (ev.key === "Enter" || ev.key === " ") {
+          ev.preventDefault();
+          pickRegion(region.id);
+        }
+      },
+    },
+    s("circle", { class: "hit", cx: x, cy: y, r: 20 }),
+    selected ? s("circle", { class: "ring", cx: x, cy: y, r: 11 }) : null,
+    s("circle", { class: "dot", cx: x, cy: y, r: selected ? 6.5 : 5 }),
+    s("text", { x: x + dx, y: y + dy, "text-anchor": anchor, text: region.short }),
+  );
+}
+
+function mapSvg(dial) {
+  const inset = insetFrame();
+  const selected = regionById(dial.region);
+  const at = selected.id === "caribe" ? inset.project(selected.at) : project(selected.at);
+  const level = dial.level;
+  const svg = s(
+    "svg",
+    { viewBox: `0 0 ${WIDTH} ${HEIGHT}`, class: "map", role: "group", "aria-label": "Dialect map. Tap a place." },
+    s(
+      "defs",
+      {},
+      s(
+        "radialGradient",
+        { id: "halo" },
+        s("stop", { offset: "0", "stop-color": "#ffd166", "stop-opacity": "0.9" }),
+        s("stop", { offset: "0.45", "stop-color": "#ff4fa3", "stop-opacity": "0.45" }),
+        s("stop", { offset: "1", "stop-color": "#ff4fa3", "stop-opacity": "0" }),
+      ),
+      s(
+        "pattern",
+        { id: "grid", width: 22, height: 22, patternUnits: "userSpaceOnUse" },
+        s("path", { d: "M22 0H0V22", fill: "none", stroke: "#2de2e6", "stroke-opacity": "0.08", "stroke-width": "1" }),
+      ),
+      s("clipPath", { id: "inset-clip" }, s("rect", { x: inset.x, y: inset.y, width: inset.w, height: inset.h, rx: 10 })),
+    ),
+    s("rect", { class: "water", x: 0, y: 0, width: WIDTH, height: HEIGHT }),
+    s("rect", { x: 0, y: 0, width: WIDTH, height: HEIGHT, fill: "url(#grid)" }),
+    s("path", { class: "land", d: pathOf(USA) }),
+    s("path", { class: "land mx", d: pathOf(MEXICO) }),
+    s("path", { class: "land tx", d: pathOf(TEXAS) }),
+    s("path", { class: "river", d: `M${RIVER.map((p) => project(p).join(" ")).join("L")}` }),
+    s("text", { class: "country", x: project([-90.2, 34.6])[0], y: project([-90.2, 34.6])[1], text: "U.S." }),
+    s("text", { class: "country", x: project([-102.6, 22.4])[0], y: project([-102.6, 22.4])[1], text: "MÉXICO" }),
+    s("text", { class: "country tx", x: project([-100.3, 31.6])[0], y: project([-100.3, 31.6])[1], text: "TEXAS" }),
+    s(
+      "text",
+      { class: "sea", x: project([-94.2, 27.7])[0], y: project([-94.2, 27.7])[1] },
+      s("tspan", { x: project([-94.2, 27.7])[0], dy: 0, text: "Golfo" }),
+      s("tspan", { x: project([-94.2, 27.7])[0], dy: 12, text: "de México" }),
+    ),
+    level > 0 ? s("circle", { class: "halo", cx: at[0], cy: at[1], r: HALO[level] }) : null,
+    s(
+      "g",
+      {
+        class: `inset ${selected.id === "caribe" ? "on" : ""}`,
+        role: "button",
+        tabindex: 0,
+        "aria-label": `Miami and Cuba${selected.id === "caribe" ? " (selected)" : ""}`,
+        "aria-pressed": String(selected.id === "caribe"),
+        onclick: () => pickRegion("caribe"),
+        onkeydown: (ev) => {
+          if (ev.key === "Enter" || ev.key === " ") {
+            ev.preventDefault();
+            pickRegion("caribe");
+          }
+        },
+      },
+      s("rect", { class: "inset-bg", x: inset.x, y: inset.y, width: inset.w, height: inset.h, rx: 10 }),
+      s(
+        "g",
+        { "clip-path": "url(#inset-clip)" },
+        s("path", { class: "land", d: pathOf(FLORIDA, inset.project) }),
+        s("path", { class: "land cu", d: pathOf(CUBA, inset.project) }),
+        ...CITIES_INSET.map((c) => {
+          const [x, y] = inset.project(c.at);
+          return s("circle", { class: "city", cx: x, cy: y, r: 2.4 });
+        }),
+      ),
+      s("rect", { class: "inset-frame", x: inset.x, y: inset.y, width: inset.w, height: inset.h, rx: 10 }),
+      s("text", { class: "inset-label", x: inset.x + inset.w / 2, y: inset.y + inset.h + 13, "text-anchor": "middle", text: "Miami · Cuba" }),
+      selected.id === "caribe" ? s("circle", { class: "ring", cx: at[0], cy: at[1], r: 9 }) : null,
+    ),
+    ...REGIONS.filter((r) => r.id !== "caribe").map((r) => {
+      const [x, y] = project(r.at);
+      return hotspot(r, x, y, r.id === selected.id);
+    }),
+  );
+  return svg;
+}
+
+function updateMap() {
+  if (!app.earState || !$("map-art")) return;
+  const dial = app.earState.dial;
+  const region = regionById(dial.region);
+  const level = LEVELS[dial.level];
+
+  fill($("map-art"), mapSvg(dial));
+  for (const btn of $("region-chips").querySelectorAll("[data-region]")) {
+    btn.setAttribute("aria-pressed", String(btn.dataset.region === dial.region));
+  }
+  const range = $("taper");
+  if (Number(range.value) !== dial.level) range.value = String(dial.level);
+  range.setAttribute("aria-valuetext", level.name);
+  for (const btn of $("taper-stops").querySelectorAll("[data-level]")) {
+    btn.setAttribute("aria-pressed", String(Number(btn.dataset.level) === dial.level));
+  }
+  $("taper-tip").textContent = level.tip;
+
+  const voice = pickVoice("es");
+  fill(
+    $("region-card"),
+    h("p", { class: "eyebrow", text: region.area }),
+    h("h3", { text: region.name }),
+    h("p", { text: region.blurb }),
+    h("p", { class: "eyebrow", text: "How it sounds" }),
+    h("ul", { class: "accent" }, region.accent.map((a) => h("li", { text: a }))),
+    h(
+      "p",
+      { class: "muted small" },
+      `Ear listens for ${region.ear === "es-MX" ? "Mexican" : "U.S."} Spanish · Voice: ${voice ? voice.name : "the phone's Spanish voice"}`,
+    ),
+  );
+
+  fill(
+    $("map-samples"),
+    MAP_SAMPLES.map((line) => {
+      const hit = translate(line, "en", { dial });
+      return h(
+        "li",
+        { class: "sample" },
+        h(
+          "div",
+          {},
+          h("span", { class: "en small", text: line }),
+          h("span", { class: "es", lang: "es", text: hit.text }),
+          hit.sounds ? h("span", { class: "sounds small", lang: "es" }, h("b", { text: "Sounds like " }), hit.sounds) : null,
+          dial.level > 0 && hit.formal ? h("span", { class: "std small", lang: "es", text: `Formal: ${hit.formal}` }) : null,
+        ),
+        canSpeak() ? playButton(hit.voiced || hit.text, "es", `Hear “${hit.text}”`) : null,
+      );
+    }),
+  );
+
+  fill(
+    $("map-compare"),
+    compare(Math.max(dial.level, 1)).map((row) => {
+      const here = dial.level === 0 ? row.formal : row.forms[region.id];
+      const others = REGIONS.filter((r) => r.id !== region.id);
+      return h(
+        "li",
+        { class: "cmp" },
+        h("span", { class: "cmp-en", text: row.en }),
+        h("span", { class: "cmp-here", lang: "es", text: here }),
+        h(
+          "span",
+          { class: "cmp-others" },
+          others.map((r) =>
+            h("button", { type: "button", class: row.forms[r.id] === here ? "same" : "", onclick: () => pickRegion(r.id), title: r.name }, h("b", { text: r.short }), ` ${row.forms[r.id]}`),
+          ),
+          h("span", { class: "formal" }, h("b", { text: "Textbook" }), ` ${row.formal}`),
+        ),
+      );
+    }),
   );
 }
 
