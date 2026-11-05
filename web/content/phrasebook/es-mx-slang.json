@@ -1,0 +1,255 @@
+{
+  "schema": 1,
+  "kind": "phrasebook",
+  "id": "es-mx-slang",
+  "title": { "en": "Mexican slang", "es": "Caló mexicano" },
+  "status": "starter-needs-native-review",
+  "dialects": ["es-MX"],
+  "entries": [
+    {
+      "id": "mx-guey", "type": "slang",
+      "t": { "es": ["güey", "wey", "guey"], "en": ["dude", "bro"] },
+      "note": {
+        "en": "Friendly between friends; can sound rude from a stranger.",
+        "es": "Amistoso entre amigos; puede sonar grosero con extraños."
+      }
+    },
+    {
+      "id": "mx-orale", "type": "slang",
+      "t": { "es": ["órale"], "en": ["alright!", "okay!", "wow!"] },
+      "note": {
+        "en": "Very flexible: okay, let's go, wow or come on, depending on tone.",
+        "es": "Muy flexible: okay, vamos, wow o ándale, según el tono."
+      }
+    },
+    {
+      "id": "mx-chido", "type": "slang",
+      "t": { "es": ["chido", "chida"], "en": ["cool", "awesome"] }
+    },
+    {
+      "id": "mx-que-padre", "type": "slang",
+      "t": { "es": ["qué padre"], "en": ["how cool!", "awesome!"] }
+    },
+    {
+      "id": "mx-no-manches", "type": "slang",
+      "t": { "es": ["no manches", "no manchen"], "en": ["no way!", "come on!"] },
+      "note": {
+        "en": "Mild 'you're kidding / no way'; not a serious insult.",
+        "es": "Expresión suave de sorpresa o incredulidad."
+      }
+    },
+    {
+      "id": "mx-neta", "type": "slang",
+      "t": { "es": ["la neta", "neta"], "en": ["for real", "honestly"] },
+      "note": {
+        "en": "'¿Neta?' means 'really?'; 'la neta' means 'the honest truth'.",
+        "es": "'¿Neta?' es '¿en serio?'; 'la neta' es 'la verdad'."
+      }
+    },
+    {
+      "id": "mx-chamba", "type": "slang",
+      "t": { "es": ["chamba"], "en": ["work", "job"] }
+    },
+    {
+      "id": "mx-chambear", "type": "slang",
+      "t": { "es": ["chambear"], "en": ["to work"] }
+    },
+    {
+      "id": "mx-jale", "type": "slang",
+      "t": { "es": ["jale"], "en": ["job", "work"] },
+      "note": {
+        "en": "Often a job or gig.",
+        "es": "A menudo significa trabajo o encargo."
+      }
+    },
+    {
+      "id": "mx-lana", "type": "slang",
+      "t": { "es": ["lana"], "en": ["money"] },
+      "note": {
+        "en": "Slang for money (literally 'wool').",
+        "es": "Forma coloquial de decir dinero."
+      }
+    },
+    {
+      "id": "mx-ahorita", "type": "slang",
+      "t": { "es": ["ahorita"], "en": ["right now or in a bit"] },
+      "note": {
+        "en": "Can mean right now OR in a little while. If timing matters, ask for a time.",
+        "es": "Puede ser ahora mismo o en un rato. Si importa, pregunta la hora."
+      }
+    },
+    {
+      "id": "mx-ahorita-vengo", "type": "phrase",
+      "t": { "es": ["ahorita vengo"], "en": ["I'll be right back"] }
+    },
+    {
+      "id": "mx-mande", "type": "slang",
+      "t": { "es": ["mande", "mande usted"], "en": ["pardon?", "excuse me?"] },
+      "note": {
+        "en": "Polite way to say 'pardon?' or 'yes?' when called or when something wasn't heard.",
+        "es": "Forma cortés de decir '¿perdón?' o '¿sí?'."
+      }
+    },
+    {
+      "id": "mx-que-onda", "type": "slang",
+      "t": { "es": ["qué onda"], "en": ["what's up?"] }
+    },
+    {
+      "id": "mx-carnal", "type": "slang",
+      "t": { "es": ["carnal"], "en": ["bro", "buddy"] },
+      "note": {
+        "en": "A close friend, like a brother.",
+        "es": "Un amigo muy cercano, como un hermano."
+      }
+    },
+    {
+      "id": "mx-troca", "type": "slang",
+      "t": { "es": ["troca"], "en": ["truck"] },
+      "note": {
+        "en": "Common Mexican-American word for 'truck'.",
+        "es": "Palabra común en el español mexicano-americano para 'truck'."
+      }
+    },
+    {
+      "id": "mx-aguas", "type": "slang",
+      "t": { "es": ["aguas"], "en": ["watch out!", "heads up!"] },
+      "note": {
+        "en": "Shouted as a warning ('watch out!'), it is not about water.",
+        "es": "Se grita como advertencia: cuidado."
+      }
+    },
+    {
+      "id": "mx-echale-ganas", "type": "slang",
+      "t": { "es": ["échale ganas", "échenle ganas"], "en": ["give it your all", "keep at it"] }
+    },
+    {
+      "id": "mx-ya-estuvo", "type": "slang",
+      "t": { "es": ["ya estuvo"], "en": ["that's it, all done"] }
+    },
+    {
+      "id": "mx-al-rato", "type": "slang",
+      "t": { "es": ["al rato"], "en": ["later", "in a while"] }
+    },
+    {
+      "id": "mx-ni-modo", "type": "slang",
+      "t": { "es": ["ni modo"], "en": ["oh well", "nothing to be done"] }
+    },
+    {
+      "id": "mx-chafa", "type": "slang",
+      "t": { "es": ["chafa", "qué chafa"], "en": ["low quality", "how lame"] },
+      "note": {
+        "en": "Cheap or poor quality.",
+        "es": "De mala calidad o barato."
+      }
+    },
+    {
+      "id": "mx-chela", "type": "slang",
+      "t": { "es": ["chela", "chelas"], "en": ["beer", "beers"] }
+    },
+    {
+      "id": "common-no-hay-bronca", "type": "phrase",
+      "t": { "es": ["no hay bronca"], "en": ["no problem"] }
+    },
+    {
+      "id": "common-dale", "type": "slang",
+      "t": { "es": ["dale"], "en": ["go ahead", "okay"] }
+    },
+    { "id": "mx-sale", "type": "slang", "t": { "es": ["sale", "sale y vale"], "en": ["okay", "sounds good"] } },
+    { "id": "mx-andale", "type": "slang", "t": { "es": ["ándale", "andale", "ándale pues"], "en": ["come on", "alright"] } },
+    { "id": "mx-simon", "type": "slang", "t": { "es": ["simón", "simon"], "en": ["yes"] }, "note": { "en": "Casual yes." } },
+    { "id": "mx-nel", "type": "slang", "t": { "es": ["nel", "nel pastel"], "en": ["no"] } },
+    { "id": "mx-chale", "type": "slang", "t": { "es": ["chale", "chales"], "en": ["no way", "nah"] } },
+    { "id": "mx-no-mames", "type": "slang",
+      "t": { "es": ["no mames", "no mamen"], "en": ["no way"] },
+      "note": { "en": "Rougher than 'no manches'. Surprise or 'come on', usually not a real insult between friends." }
+    },
+    { "id": "mx-a-huevo", "type": "slang",
+      "t": { "es": ["a huevo", "a huevo que sí"], "en": ["for sure", "hell yes"] },
+      "note": { "en": "Rough wording, friendly meaning: for sure." }
+    },
+    { "id": "mx-pedo", "type": "slang",
+      "t": { "es": ["qué pedo", "qué pex", "qué pez"], "en": ["what's up"] },
+      "note": { "en": "Greeting between friends. 'Hay pedo' means there is a problem." }
+    },
+    { "id": "mx-hay-pedo", "type": "slang", "t": { "es": ["hay pedo", "hay un pedo", "hay pex"], "en": ["there's a problem"] } },
+    { "id": "mx-no-hay-pedo", "type": "slang", "t": { "es": ["no hay pedo", "no hay pex"], "en": ["no problem"] } },
+    { "id": "mx-tranza", "type": "slang",
+      "t": { "es": ["qué tranza"], "en": ["what's up"] },
+      "note": { "en": "Usually 'what's up'. Can also mean something shady." }
+    },
+    { "id": "mx-hubo", "type": "slang", "t": { "es": ["qué hubo", "quiubo"], "en": ["what's up"] } },
+    { "id": "mx-milagro", "type": "slang", "t": { "es": ["qué milagro"], "en": ["long time no see"] } },
+    { "id": "mx-vato", "type": "slang", "t": { "es": ["vato", "vato loco"], "en": ["dude"] } },
+    { "id": "mx-cuate", "type": "slang", "t": { "es": ["cuate", "cuates"], "en": ["buddy", "buddies"] } },
+    { "id": "mx-compa", "type": "slang", "t": { "es": ["compa", "compadre"], "en": ["buddy"] } },
+    { "id": "mx-raza", "type": "slang",
+      "t": { "es": ["raza", "la raza"], "en": ["the crew"] },
+      "note": { "en": "The people, the crew. Not an insult." }
+    },
+    { "id": "mx-plebe", "type": "slang", "t": { "es": ["plebe", "la plebe"], "en": ["the guys", "kid"] } },
+    { "id": "mx-morro", "type": "slang", "t": { "es": ["morro", "morra"], "en": ["kid", "young guy"] } },
+    { "id": "mx-chavo", "type": "slang", "t": { "es": ["chavo", "chava"], "en": ["guy", "girl"] } },
+    { "id": "mx-patron", "type": "slang", "t": { "es": ["patrón", "el patrón"], "en": ["the boss"] } },
+    { "id": "mx-mayordomo", "type": "slang", "t": { "es": ["mayordomo"], "en": ["foreman"] } },
+    { "id": "mx-trucha", "type": "slang",
+      "t": { "es": ["trucha", "ponte trucha", "ponte trucha"], "en": ["watch out", "stay sharp"] },
+      "note": { "en": "Watch out / stay alert. Not about fish." }
+    },
+    { "id": "mx-paro", "type": "slang",
+      "t": { "es": ["un paro"], "en": ["a favor"] },
+      "note": { "en": "Help me out. Not a work stoppage." }
+    },
+    { "id": "mx-paro-mano", "type": "slang",
+      "t": { "es": ["échame un paro", "hazme un paro"], "en": ["give me a hand"] },
+      "note": { "en": "Help me out. Not a work stoppage." }
+    },
+    { "id": "mx-mano", "type": "phrase", "t": { "es": ["échame la mano", "échenme la mano"], "en": ["give me a hand"] } },
+    { "id": "mx-volada", "type": "slang", "t": { "es": ["de volada", "volada"], "en": ["right away"] } },
+    { "id": "mx-luego", "type": "slang", "t": { "es": ["luego luego"], "en": ["right away"] } },
+    { "id": "mx-tiro", "type": "slang", "t": { "es": ["al tiro"], "en": ["right away"] }, "note": { "en": "Right now. Sometimes 'be straight with me'." } },
+    { "id": "mx-merito", "type": "slang", "t": { "es": ["ya merito", "merito", "mérito"], "en": ["almost", "almost done"] } },
+    { "id": "mx-apurale", "type": "phrase", "t": { "es": ["apúrale", "apurale", "apúrense"], "en": ["hurry up"] } },
+    { "id": "mx-metele", "type": "slang", "t": { "es": ["métele", "metele"], "en": ["get on it"] } },
+    { "id": "mx-ya-quedo", "type": "slang", "t": { "es": ["ya quedó", "ya quedo"], "en": ["it's done"] } },
+    { "id": "mx-cabron", "type": "slang",
+      "t": { "es": ["está cabrón", "esta cabron", "está cañón"], "en": ["this is rough"] },
+      "note": { "en": "The job is hard or the situation is intense. Rough language, often not aimed at a person." }
+    },
+    { "id": "mx-gacho", "type": "slang", "t": { "es": ["gacho", "qué gacho"], "en": ["messed up", "that sucks"] } },
+    { "id": "mx-suave", "type": "slang", "t": { "es": ["está suave", "suave"], "en": ["it's all good", "easy"] } },
+    { "id": "mx-de-aquellas", "type": "slang", "t": { "es": ["de aquellas"], "en": ["awesome"] } },
+    { "id": "mx-no-inventes", "type": "slang", "t": { "es": ["no inventes"], "en": ["no way"] } },
+    { "id": "mx-a-poco", "type": "slang", "t": { "es": ["a poco"], "en": ["really?"] } },
+    { "id": "mx-hijole", "type": "slang", "t": { "es": ["híjole", "hijole"], "en": ["oh man"] } },
+    { "id": "mx-aguites", "type": "slang", "t": { "es": ["no te agüites", "no te aguites"], "en": ["don't sweat it"] } },
+    { "id": "mx-pelon", "type": "slang",
+      "t": { "es": ["está pelón", "esta pelon"], "en": ["we're short", "it's tight"] },
+      "note": { "en": "Money, time, or parts are tight. Not about hair." }
+    },
+    { "id": "mx-caliente", "type": "slang",
+      "t": { "es": ["está caliente"], "en": ["it's hot"] },
+      "note": { "en": "Can mean the metal is hot, or the situation is dangerous." }
+    },
+    { "id": "mx-lonche", "type": "slang", "t": { "es": ["lonche", "el lonche", "lonchar"], "en": ["lunch", "to eat lunch"] } },
+    { "id": "mx-hora-lonche", "type": "phrase", "t": { "es": ["ya es hora del lonche"], "en": ["it's lunch time"] } },
+    { "id": "mx-yarda", "type": "slang", "t": { "es": ["yarda", "la yarda"], "en": ["the yard"] } },
+    { "id": "mx-traila", "type": "slang", "t": { "es": ["traila", "la traila", "el tráiler"], "en": ["trailer"] } },
+    { "id": "mx-caja", "type": "slang",
+      "t": { "es": ["la caja"], "en": ["the trailer"] },
+      "note": { "en": "On a dock, 'la caja' is the trailer, not a cardboard box." }
+    },
+    { "id": "mx-patin", "type": "slang", "t": { "es": ["patín", "el patín"], "en": ["pallet jack"] } },
+    { "id": "mx-matraca", "type": "slang", "t": { "es": ["matraca"], "en": ["ratchet"] } },
+    { "id": "mx-dado", "type": "slang", "t": { "es": ["el dado", "dado"], "en": ["socket"] }, "note": { "en": "The socket for a ratchet, not a dice cube." } },
+    { "id": "mx-esmeril", "type": "slang", "t": { "es": ["esmeril"], "en": ["grinder"] } },
+    { "id": "mx-soplete", "type": "slang", "t": { "es": ["soplete"], "en": ["torch"] } },
+    { "id": "mx-llanta", "type": "slang", "t": { "es": ["llanta", "ponchada", "se ponchó"], "en": ["tire", "flat tire", "it went flat"] } },
+    { "id": "mx-feria", "type": "slang", "t": { "es": ["feria"], "en": ["cash"] }, "note": { "en": "Cash or change, not a carnival." } },
+    { "id": "mx-varo", "type": "slang", "t": { "es": ["varo"], "en": ["money"] } },
+    { "id": "mx-quincena", "type": "slang", "t": { "es": ["la quincena", "quincena"], "en": ["paycheck"] } },
+    { "id": "mx-turno", "type": "slang", "t": { "es": ["el turno", "turno de noche"], "en": ["the shift", "night shift"] } },
+    { "id": "mx-tiempo-extra", "type": "phrase", "t": { "es": ["tiempo extra"], "en": ["overtime"] } },
+    { "id": "mx-refa", "type": "slang", "t": { "es": ["la refa", "refinería"], "en": ["the refinery"] } },
+    { "id": "mx-planta", "type": "slang", "t": { "es": ["la planta"], "en": ["the plant"] } }
+  ]
+}

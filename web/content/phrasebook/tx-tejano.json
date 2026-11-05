@@ -1,0 +1,375 @@
+{
+  "schema": 1,
+  "kind": "phrasebook",
+  "id": "tx-tejano",
+  "title": { "en": "Tejano & Tex-Mex", "es": "Tejano y Tex-Mex" },
+  "status": "starter-needs-native-review",
+  "dialects": ["es-US"],
+  "region": "Southeast & South Texas",
+  "entries": [
+    {
+      "id": "tx-que-paso", "type": "slang",
+      "t": { "es": ["qué pasó"], "en": ["what happened"] },
+      "note": {
+        "en": "In Texas it is also an everyday greeting: '¿Qué pasó, primo?' = what's up, cuz?",
+        "es": "En Texas también es saludo: '¿Qué pasó, primo?'."
+      }
+    },
+    {
+      "id": "tx-aqui-nomas", "type": "slang",
+      "t": { "es": ["aquí nomás", "nomás aquí", "aquí nada más"], "en": ["just hanging out", "not much"] },
+      "std": "aquí nada más",
+      "note": {
+        "en": "The classic answer to '¿Qué haces?' or '¿Cómo estás?'. Relaxed, not rude.",
+        "es": "La respuesta clásica a '¿Qué haces?'. Relajada, no grosera."
+      }
+    },
+    {
+      "id": "tx-ahi-la-llevo", "type": "slang",
+      "t": { "es": ["ahí la llevo", "ahí la llevamos", "ahí vamos"], "en": ["getting by", "hanging in there"] },
+      "note": { "en": "'Getting by', said with a shrug and a smile." }
+    },
+    {
+      "id": "tx-nomas", "type": "slang",
+      "t": { "es": ["nomás", "nomas"], "en": ["just", "only"] },
+      "std": "nada más",
+      "note": {
+        "en": "Northern Mexico and Texas favorite. 'Nomás quería saber' = I just wanted to know.",
+        "es": "Muy del norte y de Texas: 'nomás quería saber'."
+      }
+    },
+    {
+      "id": "tx-orita", "type": "slang",
+      "t": { "es": ["orita", "horita"], "en": ["right now or in a bit"] },
+      "std": "ahora",
+      "note": {
+        "en": "Texas way to say 'ahorita'. Could be now, could be later. If the time matters, ask for one.",
+        "es": "Así se dice 'ahorita' en Texas. Si importa la hora, pregunta."
+      }
+    },
+    {
+      "id": "tx-pos", "type": "slang",
+      "t": { "es": ["pos", "pus"], "en": ["well"] },
+      "std": "pues",
+      "note": { "en": "Relaxed 'pues'. 'Pos sí' = well, yeah." }
+    },
+    {
+      "id": "tx-pa", "type": "slang",
+      "t": { "es": ["pa'", "pa"], "en": ["for", "to"] },
+      "std": "para",
+      "note": { "en": "Short for 'para': 'pa' la casa' = to the house. Sometimes 'pa' just means dad." }
+    },
+    {
+      "id": "tx-andale-pues", "type": "slang",
+      "t": { "es": ["ándale pues", "andale pues", "órale pues"], "en": ["alright then", "okay then"] },
+      "std": "de acuerdo",
+      "note": {
+        "en": "The classic Tejano sign-off: agreement, then goodbye. '¡Ándale pues, bye!'",
+        "es": "La despedida tejana clásica."
+      }
+    },
+    {
+      "id": "tx-ay-dios-mio", "type": "slang",
+      "t": { "es": ["ay dios mío", "ay dios"], "en": ["oh my God"] },
+      "note": { "en": "Said by every wela, for good news and for bad news." }
+    },
+    {
+      "id": "tx-ajua", "type": "slang",
+      "t": { "es": ["ajúa", "ajua"], "en": ["woo-hoo!"] },
+      "note": { "en": "A happy grito at dances, weddings and when your song comes on." }
+    },
+    {
+      "id": "tx-a-todo-dar", "type": "slang",
+      "t": { "es": ["a todo dar"], "en": ["awesome", "great"] }
+    },
+    {
+      "id": "tx-chulo", "type": "slang",
+      "t": { "es": ["qué chula", "qué chulo", "chula", "chulo"], "en": ["how lovely", "cute"] },
+      "note": {
+        "en": "Warm compliment. 'Mi chula' = my darling. Save it for people you know, not strangers on the street.",
+        "es": "Piropo cariñoso. Mejor con gente conocida."
+      }
+    },
+    {
+      "id": "tx-mijo", "type": "slang",
+      "t": { "es": ["mijo", "mija", "mijito", "mijita", "mi'jo", "mi'ja"], "en": ["sweetie"] },
+      "std": "mi hijo",
+      "note": {
+        "en": "Short for 'mi hijo / mi hija'. Parents, welas and tías call any young person mijo. Warm, not literal.",
+        "es": "De 'mi hijo / mi hija'. Cariñoso, no literal."
+      }
+    },
+    {
+      "id": "tx-wela", "type": "slang",
+      "t": { "es": ["wela", "güela", "buela", "welita", "güelita"], "en": ["grandma"] },
+      "std": "abuela",
+      "note": {
+        "en": "From abuela → buela → wela. How lots of Texas kids say it.",
+        "es": "De abuela → buela → wela. Muy de Texas."
+      }
+    },
+    {
+      "id": "tx-welo", "type": "slang",
+      "t": { "es": ["welo", "güelo", "buelo", "welito", "güelito"], "en": ["grandpa"] },
+      "std": "abuelo",
+      "note": { "en": "From abuelo → buelo → welo." }
+    },
+    {
+      "id": "tx-nina", "type": "slang",
+      "t": { "es": ["nina", "ninita"], "en": ["godmother"] },
+      "std": "madrina",
+      "note": {
+        "en": "South Texas for madrina. Careful: niña (with ñ) means 'girl'.",
+        "es": "En el sur de Texas, nina = madrina. Ojo: niña es otra cosa."
+      }
+    },
+    {
+      "id": "tx-nino", "type": "slang",
+      "t": { "es": ["nino", "ninito"], "en": ["godfather"] },
+      "std": "padrino",
+      "note": { "en": "South Texas for padrino. Niño (with ñ) means 'boy'." }
+    },
+    {
+      "id": "tx-huerco", "type": "slang",
+      "t": { "es": ["huerco", "huerca", "huerquito", "huerquita"], "en": ["kid"] },
+      "std": "niño",
+      "register": "casual",
+      "note": {
+        "en": "Northern Mexico and Texas word for a kid. Playful and a little rough.",
+        "es": "Palabra norteña y tejana para un niño. Juguetona."
+      }
+    },
+    {
+      "id": "tx-huercos", "type": "slang",
+      "t": { "es": ["huercos", "huercas", "huerquitos"], "en": ["kids"] },
+      "std": "niños",
+      "register": "casual",
+      "note": { "en": "'¡Ya, huercos!' = knock it off, kids!" }
+    },
+    {
+      "id": "tx-chamaco", "type": "slang",
+      "t": { "es": ["chamaco", "chamaca", "chamacos"], "en": ["kid"] },
+      "std": "niño"
+    },
+    {
+      "id": "tx-jefita", "type": "slang",
+      "t": { "es": ["mi jefita", "jefita"], "en": ["my mom"] },
+      "std": "mi mamá",
+      "note": { "en": "Literally 'my little boss'. Affectionate. 'Mi jefa' can mean mom too, but at work 'la jefa' is the boss." }
+    },
+    {
+      "id": "tx-jefito", "type": "slang",
+      "t": { "es": ["mi jefito", "jefito"], "en": ["my dad"] },
+      "std": "mi papá"
+    },
+    {
+      "id": "tx-primo", "type": "slang",
+      "t": { "es": ["primo", "prima"], "en": ["cousin"] },
+      "note": { "en": "Also a friendly word for any close friend: '¿Qué onda, primo?'" }
+    },
+    {
+      "id": "tx-compadre", "type": "slang",
+      "t": { "es": ["compadre", "compadres"], "en": ["close friend"] },
+      "note": { "en": "Your child's godfather, or the father of your godchild. Family by choice, and a word for a close friend." }
+    },
+    {
+      "id": "tx-comadre", "type": "slang",
+      "t": { "es": ["comadre", "comadrita", "comadres"], "en": ["close friend"] },
+      "note": { "en": "Your child's godmother, or a close woman friend. Comadres are family by choice." }
+    },
+    {
+      "id": "tx-parquear", "type": "slang",
+      "t": { "es": ["parquear", "parquea", "parqueé", "parqueaste", "parqueó", "parqueo"], "en": ["park"] },
+      "std": "estacionar",
+      "note": {
+        "en": "Tex-Mex: English 'park' + -ear. Understood all over the U.S.",
+        "es": "Tex-Mex: del inglés 'park'. Se entiende en todo Estados Unidos."
+      }
+    },
+    {
+      "id": "tx-chequear", "type": "slang",
+      "t": { "es": ["chequear", "chequea", "chequéalo", "chequé"], "en": ["check"] },
+      "std": "revisar",
+      "note": { "en": "From 'check'. Mexico also says 'checar'." }
+    },
+    {
+      "id": "tx-cuitear", "type": "slang",
+      "t": { "es": ["cuitear", "cuiteé", "cuiteó", "cuitié"], "en": ["quit"] },
+      "std": "renunciar",
+      "note": { "en": "From 'quit'. 'Ya cuiteé' = I quit." }
+    },
+    {
+      "id": "tx-textear", "type": "slang",
+      "t": { "es": ["textear", "textéame", "texteo", "textea"], "en": ["text"] },
+      "std": "mandar mensaje",
+      "note": { "en": "From 'text'. 'Textéame' = text me." }
+    },
+    {
+      "id": "tx-mapear", "type": "slang",
+      "t": { "es": ["mapear", "mapea", "mopear", "mopea"], "en": ["mop"] },
+      "std": "trapear",
+      "note": { "en": "From 'mop'. In Mexico: trapear." }
+    },
+    {
+      "id": "tx-puchar", "type": "slang",
+      "t": { "es": ["puchar", "púchale", "pucha"], "en": ["push"] },
+      "std": "empujar",
+      "note": { "en": "From 'push'. 'Púchale' = push it." }
+    },
+    {
+      "id": "tx-cashear", "type": "slang",
+      "t": { "es": ["cashear", "cashea", "cashié"], "en": ["cash"] },
+      "std": "cambiar",
+      "note": { "en": "'Cashear el cheque' = cash the check." }
+    },
+    {
+      "id": "tx-lonchar", "type": "slang",
+      "t": { "es": ["lonchar", "lonchear", "lonchamos"], "en": ["have lunch"] },
+      "std": "almorzar",
+      "note": { "en": "From 'lunch'. 'Vamos a lonchar' = let's have lunch." }
+    },
+    {
+      "id": "tx-aplicar", "type": "slang",
+      "t": { "es": ["aplicar", "apliqué", "aplica"], "en": ["apply"] },
+      "std": "solicitar",
+      "note": { "en": "'Aplicar para un trabajo' is everyday U.S. Spanish. In Mexico: solicitar." }
+    },
+    {
+      "id": "tx-biles", "type": "slang",
+      "t": { "es": ["los biles", "biles", "bil"], "en": ["the bills"] },
+      "std": "las cuentas",
+      "note": { "en": "From 'bills': rent, light, water. 'Pagar los biles' = pay the bills." }
+    },
+    {
+      "id": "tx-aseguranza", "type": "slang",
+      "t": { "es": ["aseguranza", "la aseguranza"], "en": ["insurance"] },
+      "std": "seguro",
+      "note": { "en": "A classic Tex-Mex word. In Mexico: seguro." }
+    },
+    {
+      "id": "tx-marqueta", "type": "slang",
+      "t": { "es": ["marqueta", "la marqueta"], "en": ["market"] },
+      "std": "mercado"
+    },
+    {
+      "id": "tx-brecas", "type": "slang",
+      "t": { "es": ["brecas", "las brecas"], "en": ["brakes"] },
+      "std": "frenos"
+    },
+    {
+      "id": "tx-dompe", "type": "slang",
+      "t": { "es": ["dompe", "el dompe"], "en": ["dump truck"] },
+      "std": "camión de volteo"
+    },
+    {
+      "id": "tx-cora", "type": "slang",
+      "t": { "es": ["cora", "una cora"], "en": ["quarter"] },
+      "std": "moneda de 25 centavos",
+      "note": { "en": "A 25-cent coin. Also daime (dime) and níquel (nickel)." }
+    },
+    {
+      "id": "tx-zacate", "type": "slang",
+      "t": { "es": ["zacate", "el zacate"], "en": ["grass"] },
+      "std": "césped",
+      "note": { "en": "'Cortar el zacate' = mow the lawn." }
+    },
+    {
+      "id": "tx-pulga", "type": "slang",
+      "t": { "es": ["la pulga"], "en": ["the flea market"] },
+      "std": "el mercado de pulgas",
+      "note": { "en": "Texas flea markets: food, music, everything for sale. Literally 'the flea'." }
+    },
+    {
+      "id": "tx-raspa", "type": "slang",
+      "t": { "es": ["raspa", "raspas"], "en": ["snow cone"] },
+      "std": "raspado",
+      "note": { "en": "South Texas summer must: shaved ice with syrup, often with chamoy and chile." }
+    },
+    {
+      "id": "tx-la-luz", "type": "slang",
+      "t": { "es": ["la luz"], "en": ["the light"] },
+      "note": { "en": "Also the traffic light in Texas: 'dobla en la luz' = turn at the light. 'Se fue la luz' = the power went out." }
+    },
+    {
+      "id": "tx-freeway", "type": "slang",
+      "t": { "es": ["la freeway", "freeway"], "en": ["the freeway"] },
+      "std": "la autopista",
+      "note": { "en": "Houston Spanish keeps 'la freeway'." }
+    },
+    {
+      "id": "tx-bochorno", "type": "slang",
+      "t": { "es": ["qué bochorno", "bochorno"], "en": ["so muggy"] },
+      "note": { "en": "That Gulf Coast air you can wear: hot, heavy, humid. Elsewhere 'bochorno' can also mean embarrassment." }
+    },
+    {
+      "id": "tx-picoso", "type": "slang",
+      "t": { "es": ["picoso", "picosa", "picosito"], "en": ["spicy"] },
+      "std": "picante",
+      "note": { "en": "Spicy-hot. 'No pica' = it's not spicy. Be careful when a wela says it doesn't pica." }
+    },
+    {
+      "id": "tx-pachanga", "type": "slang",
+      "t": { "es": ["pachanga"], "en": ["party"] },
+      "std": "fiesta"
+    },
+    {
+      "id": "tx-tardeada", "type": "slang",
+      "t": { "es": ["tardeada", "una tardeada"], "en": ["afternoon dance party"] },
+      "note": { "en": "Tejano tradition: an afternoon party with conjunto or cumbia. Everyone dances, from huercos to welas." }
+    },
+    {
+      "id": "tx-tamalada", "type": "slang",
+      "t": { "es": ["tamalada", "la tamalada"], "en": ["tamale-making party"] },
+      "note": { "en": "Before Christmas the family makes dozens of tamales together. Somebody always 'just supervises'." }
+    },
+    {
+      "id": "tx-barbacoa", "type": "slang",
+      "t": { "es": ["barbacoa"], "en": ["barbacoa"] },
+      "note": { "en": "South Texas Sunday morning: slow-cooked beef, traditionally cabeza, with tortillas. Not the same as barbecue." }
+    },
+    {
+      "id": "tx-menudo", "type": "slang",
+      "t": { "es": ["menudo"], "en": ["menudo"] },
+      "note": { "en": "Spicy tripe soup. A weekend classic and famous hangover cure." }
+    },
+    {
+      "id": "tx-a-menudo", "type": "phrase",
+      "t": { "es": ["a menudo"], "en": ["often"] }
+    },
+    {
+      "id": "tx-pan-dulce", "type": "slang",
+      "t": { "es": ["pan dulce"], "en": ["sweet bread"] },
+      "note": { "en": "Conchas, marranitos, empanadas: Mexican bakery sweets from the panadería." }
+    },
+    {
+      "id": "tx-quinceanera", "type": "slang",
+      "t": { "es": ["quinceañera"], "en": ["15th birthday celebration"] },
+      "note": { "en": "A girl's 15th birthday: mass, a big party, a waltz, and padrinos for everything from the cake to the DJ." }
+    },
+    {
+      "id": "tx-conjunto", "type": "slang",
+      "t": { "es": ["música de conjunto", "conjunto tejano"], "en": ["conjunto music"] },
+      "note": { "en": "Accordion plus bajo sexto: the sound of South Texas." }
+    },
+    {
+      "id": "tx-tejano", "type": "slang",
+      "t": { "es": ["tejano", "tejana", "música tejana"], "en": ["Tejano"] },
+      "note": { "en": "A Texan of Mexican heritage, and the music: cumbia, polka, ranchera and pop, made in Texas." }
+    },
+    {
+      "id": "tx-besame-mucho", "type": "slang",
+      "t": { "es": ["bésame mucho", "bésame bésame mucho"], "en": ["kiss me a lot"] },
+      "note": { "en": "Also the 1940 bolero by Mexican composer Consuelo Velázquez, one of the most recorded songs ever." }
+    },
+    {
+      "id": "tx-te-quiero", "type": "slang",
+      "t": { "es": ["te quiero"], "en": ["I love you"] },
+      "note": { "en": "Everyday love: family, partners, friends. 'Te amo' is deeper and more romantic." }
+    },
+    {
+      "id": "tx-mi-amor", "type": "slang",
+      "t": { "es": ["mi amor", "mi vida"], "en": ["my love"] },
+      "note": { "en": "Tejanos use these with partners and kids, and the lady at the taquería may call you 'mi amor' too." }
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Puente · Tejano Spanish</title>
+    <meta name="description" content="Puente: a Southeast Texas Tejano, Tex-Mex and Chicano Spanish translator and course. Works offline." />
+    <meta name="theme-color" content="#0f0b21" />
+    <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    />
+    <link rel="stylesheet" href="./css/puente.css" />
+  </head>
+  <body>
+    <div class="app" id="app">
+      <header class="top safe-top">
+        <div class="brand">
+          <img class="logo" src="./icons/icon.svg" alt="" width="44" height="44" />
+          <div class="brand-text">
+            <p class="wordmark">PUENTE</p>
+            <p class="tagline">Tejano · Tex-Mex · Chicano</p>
+          </div>
+        </div>
+        <nav class="tabs" role="tablist" aria-label="Sections">
+          <button type="button" role="tab" id="tab-talk" aria-controls="talk" data-tab="talk" aria-selected="true">
+            Traduce<small>Translate</small>
+          </button>
+          <button type="button" role="tab" id="tab-learn" aria-controls="learn" data-tab="learn" aria-selected="false">
+            Aprende<small>Learn</small>
+          </button>
+          <button type="button" role="tab" id="tab-words" aria-controls="words" data-tab="words" aria-selected="false">
+            Palabras<small>Words</small>
+          </button>
+        </nav>
+      </header>
+
+      <main class="panes">
+        <!-- TRANSLATE -->
+        <section class="pane talk" id="talk" role="tabpanel" aria-labelledby="tab-talk">
+          <div class="talk-status">
+            <p class="status"><span class="pip" id="pip"></span><span id="status-text">Off until you start it</span></p>
+            <div class="chips" role="group" aria-label="Language" id="lock-chips">
+              <button type="button" data-lock="auto">AUTO</button>
+              <button type="button" data-lock="en">EN</button>
+              <button type="button" data-lock="es">ES</button>
+            </div>
+          </div>
+          <div class="talk-tools">
+            <div class="chips small" role="group" aria-label="Spanish style" id="dialect-chips">
+              <button type="button" data-dialect="tejano">Tejano</button>
+              <button type="button" data-dialect="formal">Formal</button>
+            </div>
+            <button type="button" class="link" id="open-cut">Open it up</button>
+            <button type="button" class="link muted" id="clear-log">Clear</button>
+          </div>
+
+          <div class="log" id="log" tabindex="0" aria-label="Earlier lines"><ol id="log-list"></ol></div>
+
+          <div class="stage" id="stage" aria-live="polite"></div>
+
+          <div class="panel safe-bot" id="panel">
+            <button type="button" class="start" id="start">Start listening</button>
+            <div class="lamp" id="lamp" role="status" hidden><span class="lamp-dot"></span><span id="lamp-text">GO</span></div>
+            <div class="turns" role="group" aria-label="Who is talking">
+              <button type="button" class="turn me" id="turn-me" data-lock="en">Me</button>
+              <button type="button" class="turn them" id="turn-them" data-lock="es">Them</button>
+            </div>
+            <div class="pads" id="pads"></div>
+            <form class="say" id="say-form" autocomplete="off">
+              <label class="sr-only" for="say-input">Type if it's loud</label>
+              <input id="say-input" enterkeyhint="send" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type if it's loud" />
+              <button type="button" class="icon" id="voice-toggle" aria-pressed="true" aria-label="Voice on"></button>
+            </form>
+            <button type="button" class="stop" id="stop" hidden>Stop</button>
+          </div>
+        </section>
+
+        <!-- LEARN -->
+        <section class="pane learn" id="learn" role="tabpanel" aria-labelledby="tab-learn" hidden>
+          <div id="learn-root" class="scroll"></div>
+        </section>
+
+        <!-- WORDS -->
+        <section class="pane words" id="words" role="tabpanel" aria-labelledby="tab-words" hidden>
+          <div class="words-head">
+            <label class="sr-only" for="words-q">Search words</label>
+            <input id="words-q" type="search" placeholder="Busca: troca, wela, aguas, park…" autocapitalize="off" autocorrect="off" spellcheck="false" />
+            <div class="chips scroll-x" id="words-packs" role="group" aria-label="Word lists"></div>
+          </div>
+          <div class="scroll" id="words-scroll">
+            <p class="count" id="words-count"></p>
+            <ul class="word-list" id="words-list"></ul>
+            <p class="fine">
+              Starter lists, still being checked by native speakers. Spot a mistake? The words live in plain JSON files in
+              <code>web/content/phrasebook/</code>, so anybody can fix them.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- CUT VIEW -->
+    <dialog class="cut" id="cut" aria-labelledby="cut-title">
+      <div class="cut-inner">
+        <header class="cut-head">
+          <div>
+            <p class="cut-title" id="cut-title">INSIDE PUENTE</p>
+            <p class="muted small">The book is on the phone. A line is cut into the biggest pieces it knows, then said in one language.</p>
+          </div>
+          <button type="button" class="pill solid" id="cut-close">Back</button>
+        </header>
+        <form class="cut-form" id="cut-form" autocomplete="off">
+          <label class="eyebrow" for="cut-input">Cut a line</label>
+          <input id="cut-input" autocapitalize="off" autocorrect="off" spellcheck="false" value="oye, where is la troca?" />
+          <div class="split">
+            <button type="button" data-from="en" class="from en">English in</button>
+            <button type="button" data-from="es" class="from es">Spanish in</button>
+          </div>
+          <div class="chips scroll-x" id="cut-samples"></div>
+        </form>
+        <div id="cut-out"></div>
+        <ol class="steps">
+          <li><b>1. Ear</b> The phone listens until you pause. Growing guesses fold into one sentence instead of stacking up.</li>
+          <li><b>2. Turn</b> Me locks English, Them locks Spanish. Auto guesses, and Auto is the one that misses.</li>
+          <li><b>3. Book</b> Tejano phrases, shop talk and slang match the longest chunk they can. Spanglish is fine: words already in the other language are kept as said.</li>
+          <li><b>4. Mouth</b> A full line is spoken once and left big on the screen. A half line stays quiet.</li>
+        </ol>
+      </div>
+    </dialog>
+
+    <noscript><p class="noscript">Puente needs JavaScript turned on.</p></noscript>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "kind": "phrasebook",
+  "id": "work-sheet-metal",
+  "title": { "en": "Shop & hauling", "es": "Taller y fletes" },
+  "status": "starter-needs-native-review",
+  "dialects": ["es-MX", "es-US"],
+  "job": "sheet-metal-hauling",
+  "entries": [
+    {
+      "id": "work-lamina", "type": "work", "annotate_only": true,
+      "t": { "es": ["lámina", "láminas"], "en": ["sheet metal", "metal sheet"] },
+      "note": { "en": "In Mexican shops 'lámina' usually means sheet metal." }
+    },
+    {
+      "id": "work-acm", "type": "work", "annotate_only": true,
+      "t": {
+        "es": ["panel compuesto de aluminio", "panel de aluminio compuesto"],
+        "en": ["aluminum composite panel", "ACM panel"]
+      }
+    },
+    {
+      "id": "work-forklift", "type": "work", "annotate_only": true,
+      "t": { "es": ["montacargas"], "en": ["forklift", "fork lift"] }
+    },
+    {
+      "id": "work-crane", "type": "work", "annotate_only": true,
+      "t": { "es": ["grúa"], "en": ["crane", "tow truck"] },
+      "note": { "en": "'Grúa' is also a tow truck." }
+    },
+    {
+      "id": "work-pallet", "type": "work", "annotate_only": true,
+      "t": { "es": ["tarima", "tarimas"], "en": ["pallet", "skid"] }
+    },
+    {
+      "id": "work-chain", "type": "work", "annotate_only": true,
+      "t": { "es": ["cadena"], "en": ["chain"] }
+    },
+    {
+      "id": "work-strap", "type": "work", "annotate_only": true,
+      "t": { "es": ["correa de amarre", "correa"], "en": ["tie-down strap", "strap", "ratchet strap"] }
+    },
+    {
+      "id": "work-tie-down", "type": "work", "annotate_only": true,
+      "t": { "es": ["amarrar", "amarra", "amarrado"], "en": ["tie down", "tied down"] }
+    },
+    {
+      "id": "work-load", "type": "work", "annotate_only": true,
+      "t": { "es": ["carga"], "en": ["load", "cargo"] }
+    },
+    {
+      "id": "work-to-load", "type": "work", "annotate_only": true,
+      "t": { "es": ["cargar"], "en": ["to load"] }
+    },
+    {
+      "id": "work-to-unload", "type": "work", "annotate_only": true,
+      "t": { "es": ["descargar"], "en": ["to unload"] }
+    },
+    {
+      "id": "work-freight", "type": "work", "annotate_only": true,
+      "t": { "es": ["flete"], "en": ["freight", "shipping charge"] }
+    },
+    {
+      "id": "work-flatbed", "type": "work", "annotate_only": true,
+      "t": { "es": ["plataforma"], "en": ["flatbed", "flat bed"] },
+      "note": { "en": "In trucking, 'plataforma' is a flatbed trailer." }
+    },
+    {
+      "id": "work-dry-van", "type": "work", "annotate_only": true,
+      "t": { "es": ["caja seca"], "en": ["dry van", "box trailer"] }
+    },
+    {
+      "id": "work-trailer", "type": "work", "annotate_only": true,
+      "t": { "es": ["remolque"], "en": ["trailer"] }
+    },
+    {
+      "id": "work-weld", "type": "work", "annotate_only": true,
+      "t": { "es": ["soldadura"], "en": ["weld", "welding"] }
+    },
+    {
+      "id": "work-to-weld", "type": "work", "annotate_only": true,
+      "t": { "es": ["soldar"], "en": ["to weld"] }
+    },
+    {
+      "id": "work-rivet", "type": "work", "annotate_only": true,
+      "t": { "es": ["remache", "remaches"], "en": ["rivet", "rivets"] }
+    },
+    {
+      "id": "work-screw", "type": "work", "annotate_only": true,
+      "t": { "es": ["tornillo"], "en": ["screw"] }
+    },
+    {
+      "id": "work-bolt", "type": "work", "annotate_only": true,
+      "t": { "es": ["perno"], "en": ["bolt"] }
+    },
+    {
+      "id": "work-shear", "type": "work", "annotate_only": true,
+      "t": { "es": ["cizalla"], "en": ["metal shear", "shear"] }
+    },
+    {
+      "id": "work-press-brake", "type": "work", "annotate_only": true,
+      "t": { "es": ["plegadora", "dobladora"], "en": ["press brake"] },
+      "note": { "en": "A machine that bends sheet metal." }
+    },
+    {
+      "id": "work-gauge", "type": "work", "annotate_only": true,
+      "t": { "es": ["calibre"], "en": ["gauge"] },
+      "note": { "en": "Sheet thickness; a lower gauge number means thicker metal." }
+    },
+    {
+      "id": "work-hard-hat", "type": "work", "annotate_only": true,
+      "t": { "es": ["casco"], "en": ["hard hat"] }
+    },
+    {
+      "id": "work-gloves", "type": "work", "annotate_only": true,
+      "t": { "es": ["guantes"], "en": ["gloves"] }
+    },
+    {
+      "id": "work-safety-glasses", "type": "work", "annotate_only": true,
+      "t": { "es": ["lentes de seguridad"], "en": ["safety glasses"] }
+    },
+    {
+      "id": "work-sign-here", "type": "phrase",
+      "t": { "es": ["firma aquí", "firme aquí"], "en": ["sign here"] }
+    }
+  ]
+}

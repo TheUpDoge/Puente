@@ -27,3 +27,9 @@ Words and lessons are translated inside the pack files themselves (per-language 
 
 In Android Studio, open `strings.xml` and use *Open Translations Editor*; missing strings are
 highlighted. Every key in `values/` should exist in `values-es/`.
+
+## Web app (Puente Tejano)
+
+The translator screen's text is the `COPY` object near the top of `web/js/app.js`, with `en` and `es`
+versions. The phone's language picks one. The Learn and Words tabs are written for English speakers
+learning Tejano Spanish, so their labels are English with Spanish headings on purpose.
