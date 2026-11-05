@@ -1,0 +1,412 @@
+{
+  "schema": 1,
+  "kind": "course",
+  "id": "tejano-101",
+  "status": "starter-needs-native-review",
+  "teaches": "es",
+  "for": "en",
+  "dialects": ["es-US"],
+  "region": "Southeast & South Texas",
+  "title": { "en": "Tejano 101", "es": "Tejano 101" },
+  "teacher": {
+    "name": "Tía Lupe",
+    "hello": {
+      "en": "¡Hola, mijo! I'm Tía Lupe. I'll teach you the Spanish we actually speak in Texas: at the carne asada, at the plant, at your wela's kitchen table. Textbook Spanish is good. Tejano Spanish gets you invited back.",
+      "es": "¡Hola, mijo! Soy la Tía Lupe. Te enseño el español que de veras hablamos en Texas."
+    }
+  },
+  "lessons": [
+    {
+      "id": "saludos",
+      "icon": "👋",
+      "title": { "en": "¿Qué onda?", "es": "¿Qué onda?" },
+      "subtitle": { "en": "Hellos, how-are-yous & goodbyes" },
+      "tia": { "en": "First thing: say hi to everybody in the room, especially the viejitos. In Texas you don't walk past people." },
+      "items": [
+        {
+          "es": "¿Qué onda?", "en": "What's up?", "std": "¿Qué tal?",
+          "tip": { "en": "The everyday Texas hello. The answer is usually 'Nada, aquí nomás.'" }
+        },
+        {
+          "es": "¿Qué pasó?", "en": "Hey, what's up?",
+          "tip": { "en": "Literally 'what happened?', but in Texas it's mostly just a greeting: '¿Qué pasó, primo?'" }
+        },
+        {
+          "es": "¿Cómo estás?", "en": "How are you?",
+          "tip": { "en": "Use '¿Cómo está usted?' with elders and people you just met." }
+        },
+        {
+          "es": "Aquí nomás.", "en": "Not much.", "std": "Aquí nada más.",
+          "tip": { "en": "'Nomás' (just) is pure norteño and Tejano. You'll hear it all day." }
+        },
+        {
+          "es": "Ahí la llevo.", "en": "Getting by.",
+          "tip": { "en": "Said with a shrug. Not great, not bad, still going." }
+        },
+        {
+          "es": "¡Órale!", "en": "Alright!",
+          "tip": { "en": "Órale is a Swiss Army knife: okay, let's go, wow, or come on. Tone does the work." }
+        },
+        {
+          "es": "¿Mande?", "en": "Pardon?",
+          "tip": { "en": "The respectful way to answer when a parent or elder calls you. Never '¿Qué?' to your wela." }
+        },
+        {
+          "es": "Ándale pues.", "en": "Alright then.", "std": "De acuerdo.",
+          "tip": { "en": "The classic Tejano way to wrap up a phone call: '¡Ándale pues, bye!'" }
+        },
+        {
+          "es": "Ahí te watcho.", "en": "Catch you later.", "std": "Nos vemos.",
+          "tip": { "en": "Chicano and Tex-Mex, from English 'watch'. Friends only." }
+        },
+        {
+          "es": "Ahí nos vemos.", "en": "See you later.", "std": "Nos vemos.",
+          "tip": { "en": "Safe with anybody. 'Ahí nos vidrios' is the joking version." }
+        }
+      ]
+    },
+    {
+      "id": "familia",
+      "icon": "👵",
+      "title": { "en": "La familia", "es": "La familia" },
+      "subtitle": { "en": "Welas, ninas, primos & huercos" },
+      "tia": { "en": "In a Tejano family everybody is your tía or your primo, even if nobody can explain how. Just go with it." },
+      "items": [
+        {
+          "es": "Mi wela", "en": "My grandma", "std": "Mi abuela",
+          "tip": { "en": "From abuela → buela → wela. Welo is grandpa." }
+        },
+        {
+          "es": "Mi welo", "en": "My grandpa", "std": "Mi abuelo",
+          "tip": { "en": "Also güelo or buelo, depending on the family." }
+        },
+        {
+          "es": "Mijo, ven acá.", "en": "Come here, sweetie.", "std": "Hijo, ven acá.",
+          "tip": { "en": "Mijo and mija come from 'mi hijo, mi hija'. Any elder can call you mijo." }
+        },
+        {
+          "es": "Mi nina", "en": "My godmother", "std": "Mi madrina",
+          "tip": { "en": "Not niña (girl)! In South Texas, nina = madrina and nino = padrino." }
+        },
+        {
+          "es": "Mi compadre", "en": "My compadre",
+          "tip": { "en": "Your child's godfather, or the father of your godchild. Family by choice, for life." }
+        },
+        {
+          "es": "Mi primo", "en": "My cousin",
+          "tip": { "en": "Texans call close friends primo too. Real cousins and 'cousins' are both welcome." }
+        },
+        {
+          "es": "¡Ya, huercos!", "en": "Knock it off, kids!", "std": "¡Ya, niños!",
+          "tip": { "en": "Huerco is the norteño and Texas word for kid. Playful, a little rough." }
+        },
+        {
+          "es": "Mi jefita", "en": "My mom", "std": "Mi mamá",
+          "tip": { "en": "Literally 'my little boss'. Which is accurate." }
+        },
+        {
+          "es": "¿Cómo está tu wela?", "en": "How's your grandma?",
+          "tip": { "en": "Ask about the family before business. It's not small talk, it's the point." }
+        },
+        {
+          "es": "La familia viene el domingo.", "en": "The family is coming Sunday.",
+          "tip": { "en": "Sunday means barbacoa, a full house and nobody leaving before dark." }
+        }
+      ]
+    },
+    {
+      "id": "spanglish",
+      "icon": "🔁",
+      "title": { "en": "Spanglish verbs", "es": "Verbos en Spanglish" },
+      "subtitle": { "en": "Parquear, chequear, textear: English + -ear" },
+      "tia": { "en": "Here's a secret: take an English verb, add -ear, and conjugate it like any Spanish verb. Park → parquear. Check → chequear. Text → textear. Teachers may frown. Texas won't." },
+      "items": [
+        {
+          "es": "Voy a parquear la troca.", "en": "I'm going to park the truck.", "std": "Voy a estacionar la camioneta.",
+          "tip": { "en": "Two Tex-Mex classics in one line: parquear and troca." }
+        },
+        {
+          "es": "Chequea el aceite.", "en": "Check the oil.", "std": "Revisa el aceite.",
+          "tip": { "en": "Mexico says checar, Texas often says chequear. Both work." }
+        },
+        {
+          "es": "Ya cuiteé.", "en": "I quit.", "std": "Ya renuncié.",
+          "tip": { "en": "From 'quit': cuitear, cuiteé, cuiteó." }
+        },
+        {
+          "es": "Textéame.", "en": "Text me.", "std": "Mándame un mensaje.",
+          "tip": { "en": "Textear works all over the U.S." }
+        },
+        {
+          "es": "Hay que mapear el piso.", "en": "We need to mop the floor.", "std": "Hay que trapear el piso.",
+          "tip": { "en": "From 'mop'. In Mexico they say trapear." }
+        },
+        {
+          "es": "Púchale.", "en": "Push it.", "std": "Empújale.",
+          "tip": { "en": "From 'push'. Handy when the troca won't start." }
+        },
+        {
+          "es": "Voy a cashear el cheque.", "en": "I'm going to cash the check.", "std": "Voy a cambiar el cheque.",
+          "tip": { "en": "Cashear el cheque on Friday, pagar los biles on Saturday." }
+        },
+        {
+          "es": "Vamos a lonchar.", "en": "Let's have lunch.", "std": "Vamos a almorzar.",
+          "tip": { "en": "Lonche (lunch) and lonchar (to have lunch). The lunch truck is la lonchera." }
+        },
+        {
+          "es": "¿Ya pagaste los biles?", "en": "Did you pay the bills?", "std": "¿Ya pagaste las cuentas?",
+          "tip": { "en": "Los biles: light, water, phone. Everybody's favorite word." }
+        },
+        {
+          "es": "Hay que aplicar para el jale.", "en": "You have to apply for the job.", "std": "Hay que solicitar el trabajo.",
+          "tip": { "en": "Aplicar (apply) and jale (job) are everyday U.S. Spanish." }
+        }
+      ]
+    },
+    {
+      "id": "comida",
+      "icon": "🌮",
+      "title": { "en": "La comida", "es": "La comida" },
+      "subtitle": { "en": "Breakfast tacos, barbacoa & raspas" },
+      "tia": { "en": "If somebody's wela offers you food, you say yes. If you're full, you say yes smaller. That's the whole lesson. Okay, there's a little more." },
+      "items": [
+        {
+          "es": "Un taco de papa con huevo", "en": "A potato and egg taco",
+          "tip": { "en": "The South Texas breakfast taco, on a flour tortilla, of course." }
+        },
+        {
+          "es": "Tortillas de harina", "en": "Flour tortillas",
+          "tip": { "en": "Texas runs on flour tortillas. Much of Mexico runs on corn (maíz)." }
+        },
+        {
+          "es": "Barbacoa los domingos", "en": "Barbacoa on Sundays",
+          "tip": { "en": "Slow-cooked beef on Sunday morning, with tortillas and salsa. Not the same as barbecue." }
+        },
+        {
+          "es": "¿Está picoso?", "en": "Is it spicy?", "std": "¿Está picante?",
+          "tip": { "en": "Picoso is the Mexican and Tejano word for spicy-hot. If they say 'nomás tantito', be ready." }
+        },
+        {
+          "es": "Una raspa de fresa", "en": "A strawberry snow cone", "std": "Un raspado de fresa",
+          "tip": { "en": "The Texas summer survival kit. Ask for chamoy if you're brave." }
+        },
+        {
+          "es": "La tamalada", "en": "The tamale-making party",
+          "tip": { "en": "Before Christmas the whole family assembles dozens of tamales. Somebody always just supervises." }
+        },
+        {
+          "es": "Pan dulce", "en": "Sweet bread",
+          "tip": { "en": "Conchas, marranitos, empanadas, from the panadería, with coffee." }
+        },
+        {
+          "es": "Pásame la salsa.", "en": "Pass me the salsa.",
+          "tip": { "en": "Pásame = pass me. Works for tortillas, salsa, and the remote." }
+        },
+        {
+          "es": "Está bien rico.", "en": "It's really delicious.", "std": "Está muy rico.",
+          "tip": { "en": "'Bien' before a word means 'really': bien rico, bien picoso, bien chido." }
+        },
+        {
+          "es": "Estoy bien lleno.", "en": "I'm really full.",
+          "tip": { "en": "Say it with a smile. They will still make you a plate to take home." }
+        }
+      ]
+    },
+    {
+      "id": "calo",
+      "icon": "😎",
+      "title": { "en": "Caló de la calle", "es": "Caló de la calle" },
+      "subtitle": { "en": "Chicano slang: ese, carnal, simón" },
+      "tia": { "en": "Caló is old Chicano street talk, from the pachucos of the 1940s to your tío at the car show. Use it with friends. With your boss's mom, maybe not." },
+      "items": [
+        {
+          "es": "¿Qué onda, ese?", "en": "What's up, man?",
+          "tip": { "en": "Ese means 'that one', so 'that guy', so 'dude'. Esa for a woman." }
+        },
+        {
+          "es": "Simón.", "en": "Yeah.", "std": "Sí.",
+          "tip": { "en": "A playful yes. 'Simón que sí' = heck yes." }
+        },
+        {
+          "es": "Nel.", "en": "Nah.", "std": "No.",
+          "tip": { "en": "The no that goes with simón. 'Nel pastel' if you're feeling extra." }
+        },
+        {
+          "es": "Está firme.", "en": "It's cool.", "std": "Está muy bien.",
+          "tip": { "en": "Firme = cool, solid, legit." }
+        },
+        {
+          "es": "¡Chale!", "en": "No way!",
+          "tip": { "en": "Disbelief or disappointment: no way, bummer, come on." }
+        },
+        {
+          "es": "Mi carnal", "en": "My brother",
+          "tip": { "en": "From carne (flesh, blood): a brother, or a friend so close he might as well be." }
+        },
+        {
+          "es": "Ponte trucha.", "en": "Stay sharp.", "std": "Ponte atento.",
+          "tip": { "en": "Trucha means trout. Ponte trucha means be alert. Nobody knows why. It works." }
+        },
+        {
+          "es": "La ranfla", "en": "The car", "std": "El carro",
+          "tip": { "en": "Caló for a car, especially a lowrider." }
+        },
+        {
+          "es": "Vamos a mi cantón.", "en": "Let's go to my place.", "std": "Vamos a mi casa.",
+          "tip": { "en": "Cantón = house, home." }
+        },
+        {
+          "es": "Está bien rasquache.", "en": "It's super scrappy.",
+          "tip": { "en": "Rasquache can be a put-down, or a proud Chicano style of making art from whatever you've got." }
+        }
+      ]
+    },
+    {
+      "id": "jale",
+      "icon": "🦺",
+      "title": { "en": "En el jale", "es": "En el jale" },
+      "subtitle": { "en": "Plants, refineries, shops & yards" },
+      "tia": { "en": "Southeast Texas works in the plants, on the docks, in the shops. On the job, safety words come first, then everything else. Aguas means watch out, and you'll hear it fast." },
+      "items": [
+        {
+          "es": "¿Dónde está el mayordomo?", "en": "Where's the foreman?", "std": "¿Dónde está el supervisor?",
+          "tip": { "en": "Mayordomo is the crew boss. El jefe is the boss in general." }
+        },
+        {
+          "es": "Ponte el arnés.", "en": "Put on your harness.",
+          "tip": { "en": "Ponte = put on (yourself): ponte el casco, ponte los guantes." }
+        },
+        {
+          "es": "Botas de casquillo", "en": "Steel toe boots",
+          "tip": { "en": "Casquillo is the steel cap. No boots, no work." }
+        },
+        {
+          "es": "Ve al punto de reunión.", "en": "Go to the muster point.",
+          "tip": { "en": "Every plant drills this. Know where yours is on day one." }
+        },
+        {
+          "es": "Hay una fuga de gas.", "en": "There's a gas leak.",
+          "tip": { "en": "Fuga = leak. Get out, go upwind, tell someone." }
+        },
+        {
+          "es": "Ya viene el turnaround.", "en": "The turnaround is coming.", "std": "Ya viene el paro de planta.",
+          "tip": { "en": "Shutdown season: long shifts, overtime, new faces. Spanish on site keeps the English word." }
+        },
+        {
+          "es": "¿Hay overtime este fin?", "en": "Is there overtime this weekend?", "std": "¿Hay tiempo extra este fin de semana?",
+          "tip": { "en": "Este fin = este fin de semana, this weekend." }
+        },
+        {
+          "es": "¡Aguas con el andamio!", "en": "Watch out for the scaffold!", "std": "¡Cuidado con el andamio!",
+          "tip": { "en": "Aguas is the shouted warning. It has nothing to do with water." }
+        },
+        {
+          "es": "¿A qué hora es el lonche?", "en": "What time is lunch?", "std": "¿A qué hora es el almuerzo?",
+          "tip": { "en": "The most important question of the shift." }
+        },
+        {
+          "es": "Échame la mano.", "en": "Give me a hand.", "std": "Ayúdame.",
+          "tip": { "en": "Literally 'throw me the hand'. Also: échame un paro (do me a favor)." }
+        }
+      ]
+    },
+    {
+      "id": "sureste",
+      "icon": "🌀",
+      "title": { "en": "El Sureste", "es": "El Sureste" },
+      "subtitle": { "en": "Heat, hurricanes, freeways & la pulga" },
+      "tia": { "en": "From Houston to Beaumont to Port Arthur, we've got three seasons: hot, hotter, and hurricane. Learn these and you can talk weather with anybody's tío." },
+      "items": [
+        {
+          "es": "¡Qué bochorno!", "en": "It's so muggy!",
+          "tip": { "en": "Bochorno is that heavy Gulf Coast air you can wear." }
+        },
+        {
+          "es": "Prende el aire.", "en": "Turn on the AC.", "std": "Prende el aire acondicionado.",
+          "tip": { "en": "El aire = the AC. Apaga el aire = turn it off (nobody does)." }
+        },
+        {
+          "es": "Viene un huracán.", "en": "A hurricane is coming.",
+          "tip": { "en": "Hurricane season runs June through November." }
+        },
+        {
+          "es": "Se fue la luz.", "en": "The power went out.",
+          "tip": { "en": "Literally 'the light left'. Ya volvió la luz = the power is back." }
+        },
+        {
+          "es": "Se inundó la calle.", "en": "The street flooded.",
+          "tip": { "en": "Inundar = to flood. Houston knows this word too well." }
+        },
+        {
+          "es": "Da la vuelta, no te ahogues.", "en": "Turn around, don't drown.",
+          "tip": { "en": "Never drive into flooded roads. A little water can float a troca." }
+        },
+        {
+          "es": "Vamos a la pulga.", "en": "Let's go to the flea market.", "std": "Vamos al mercado de pulgas.",
+          "tip": { "en": "La pulga: food, music, tools, puppies, everything. A Texas weekend institution." }
+        },
+        {
+          "es": "Hay que cortar el zacate.", "en": "We need to mow the lawn.", "std": "Hay que cortar el césped.",
+          "tip": { "en": "Zacate = grass, lawn. La yarda = the yard." }
+        },
+        {
+          "es": "Agarra la freeway.", "en": "Take the freeway.", "std": "Toma la autopista.",
+          "tip": { "en": "Houston Spanish keeps 'la freeway'. Agarrar = to grab, to take." }
+        },
+        {
+          "es": "Dobla en la luz.", "en": "Turn at the light.", "std": "Dobla en el semáforo.",
+          "tip": { "en": "Texans say la luz for the traffic light. Textbooks say el semáforo." }
+        }
+      ]
+    },
+    {
+      "id": "carino",
+      "icon": "💃",
+      "title": { "en": "Cariño y música", "es": "Cariño y música" },
+      "subtitle": { "en": "Love, dancing & Tejano music" },
+      "tia": { "en": "Ay, mijo, now the good part. Tejano music, conjunto, cumbia, a dance floor at a tardeada. And yes, we're learning 'bésame mucho' properly. No more 'besume'!" },
+      "items": [
+        {
+          "es": "Te quiero mucho.", "en": "I love you a lot.",
+          "tip": { "en": "Te quiero is everyday love: family, partners, friends. Te amo is deeper, more romantic." }
+        },
+        {
+          "es": "Bésame mucho.", "en": "Kiss me a lot.",
+          "tip": { "en": "Bésame = besa (kiss) + me. It's also the title of the famous 1940 bolero by Mexican composer Consuelo Velázquez." }
+        },
+        {
+          "es": "Te extraño.", "en": "I miss you.",
+          "tip": { "en": "Te extrañé = I missed you." }
+        },
+        {
+          "es": "Mi amor", "en": "My love",
+          "tip": { "en": "Tejanos say it to partners, kids and sometimes the customer at the taquería." }
+        },
+        {
+          "es": "¿Quieres bailar?", "en": "Do you want to dance?",
+          "tip": { "en": "Use '¿Quiere bailar?' (usted) with someone older or someone you just met." }
+        },
+        {
+          "es": "Vamos al baile.", "en": "Let's go to the dance.",
+          "tip": { "en": "Al = a + el. Vamos al baile, vamos a la pulga." }
+        },
+        {
+          "es": "Una tardeada", "en": "An afternoon dance party",
+          "tip": { "en": "Afternoon party with conjunto or cumbia. Everybody dances, from huercos to welas." }
+        },
+        {
+          "es": "La música de conjunto", "en": "Conjunto music",
+          "tip": { "en": "Accordion plus bajo sexto, polkas and rancheras: the sound of South Texas." }
+        },
+        {
+          "es": "¡Ajúa!", "en": "Woo-hoo!",
+          "tip": { "en": "The happy grito when your song comes on. Practice it in the troca first." }
+        },
+        {
+          "es": "¡Qué chula!", "en": "How lovely!",
+          "tip": { "en": "Chula, chulo = lovely, cute. Sweet with people you know. Not for strangers on the street." }
+        }
+      ]
+    }
+  ]
+}

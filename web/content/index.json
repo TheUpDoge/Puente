@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "phrasebook": [
+    "phrasebook/tx-tejano.json",
+    "phrasebook/tx-chicano-calo.json",
+    "phrasebook/tx-se-texas.json",
+    "phrasebook/es-mx-slang.json",
+    "phrasebook/es-cu-slang.json",
+    "phrasebook/work-sheet-metal.json"
+  ],
+  "courses": ["courses/tejano-101.json"]
+}

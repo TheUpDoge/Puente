@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "kind": "phrasebook",
+  "id": "tx-se-texas",
+  "title": { "en": "Southeast Texas life & work", "es": "Vida y jale en el sureste de Texas" },
+  "status": "starter-needs-native-review",
+  "dialects": ["es-US", "es-MX"],
+  "region": "Houston, Beaumont, Port Arthur, Galveston & the Golden Triangle",
+  "job": "plants-refineries-shops",
+  "entries": [
+    {
+      "id": "se-andamio", "type": "work", "annotate_only": true,
+      "t": { "es": ["andamio", "andamios", "andamiero"], "en": ["scaffold", "scaffolding"] },
+      "note": { "en": "Andamiero = scaffold builder.", "es": "Andamiero = el que arma el andamio." }
+    },
+    {
+      "id": "se-arnes", "type": "work", "annotate_only": true,
+      "t": { "es": ["arnés"], "en": ["harness"] },
+      "note": { "en": "'Engánchate' = tie off, clip in." }
+    },
+    {
+      "id": "se-casquillo", "type": "work", "annotate_only": true,
+      "t": { "es": ["botas de casquillo", "casquillo"], "en": ["steel toe boots", "steel toes"] }
+    },
+    {
+      "id": "se-punto-reunion", "type": "work", "annotate_only": true,
+      "t": { "es": ["punto de reunión"], "en": ["muster point"] },
+      "note": {
+        "en": "Where everyone goes when the alarm sounds. Know where it is on day one.",
+        "es": "A donde todos van cuando suena la alarma. Apréndetelo el primer día."
+      }
+    },
+    {
+      "id": "se-fuga", "type": "work", "annotate_only": true,
+      "t": { "es": ["fuga de gas", "fuga"], "en": ["gas leak", "leak"] },
+      "note": {
+        "en": "Fuga = leak (it also means escape). Get out, go upwind, tell someone.",
+        "es": "Sal, ve contra el viento y avisa."
+      }
+    },
+    {
+      "id": "se-h2s", "type": "work",
+      "t": { "es": ["ácido sulfhídrico", "gas sulfhídrico"], "en": ["H2S", "hydrogen sulfide"] },
+      "note": {
+        "en": "Rotten-egg gas. If you stop smelling it, that can be worse, not better: leave and report.",
+        "es": "Huele a huevo podrido. Si dejas de olerlo puede ser peor: sal y avisa."
+      }
+    },
+    {
+      "id": "se-turnaround", "type": "work", "annotate_only": true,
+      "t": { "es": ["el turnaround", "turnaround", "paro de planta"], "en": ["turnaround", "plant shutdown"] },
+      "std": "paro de planta",
+      "note": { "en": "A plant shutdown for maintenance: long shifts, overtime, lots of new faces. Spanish on site usually keeps the English word." }
+    },
+    {
+      "id": "se-overtime", "type": "work", "annotate_only": true,
+      "t": { "es": ["el overtime", "overtime"], "en": ["overtime"] },
+      "std": "tiempo extra",
+      "note": { "en": "Tex-Mex keeps 'overtime'. Textbook Spanish says 'tiempo extra'." }
+    },
+    {
+      "id": "se-valvula", "type": "work", "annotate_only": true,
+      "t": { "es": ["válvula", "válvulas"], "en": ["valve", "valves"] }
+    },
+    {
+      "id": "se-brida", "type": "work", "annotate_only": true,
+      "t": { "es": ["brida", "bridas"], "en": ["flange", "flanges"] }
+    },
+    {
+      "id": "se-tubero", "type": "work",
+      "t": { "es": ["tubero", "tuberos"], "en": ["pipefitter", "pipefitters"] },
+      "note": { "en": "Pipefitter. Lots of crews just say 'fitter'." }
+    },
+    {
+      "id": "se-permiso", "type": "work", "annotate_only": true,
+      "t": { "es": ["permiso de trabajo", "permiso"], "en": ["work permit", "permit"] },
+      "note": { "en": "No permit, no work. 'Con permiso' is also 'excuse me' when you pass someone." }
+    },
+    {
+      "id": "se-bloqueo", "type": "work", "annotate_only": true,
+      "t": { "es": ["bloqueo y etiquetado", "bloqueo"], "en": ["lock out tag out", "lockout"] },
+      "note": { "en": "LOTO. Lock it, tag it, try it." }
+    },
+    {
+      "id": "se-huracan", "type": "work", "annotate_only": true,
+      "t": { "es": ["huracán", "huracanes"], "en": ["hurricane", "hurricanes"] },
+      "note": { "en": "June through November is hurricane season on the Gulf Coast." }
+    },
+    {
+      "id": "se-inundacion", "type": "slang",
+      "t": { "es": ["inundación", "se inundó", "inundado", "inundada"], "en": ["flood", "it flooded", "flooded"] },
+      "note": {
+        "en": "Turn around, don't drown: 'da la vuelta, no te ahogues'.",
+        "es": "No manejes por el agua."
+      }
+    },
+    {
+      "id": "se-se-fue-la-luz", "type": "slang",
+      "t": { "es": ["se fue la luz"], "en": ["the power went out"] },
+      "note": { "en": "Literally 'the light left'. 'Ya volvió la luz' = the power is back." }
+    },
+    {
+      "id": "se-el-aire", "type": "work", "annotate_only": true,
+      "t": { "es": ["el aire"], "en": ["the AC", "the air"] },
+      "note": { "en": "'El aire' = the air conditioning. In Southeast Texas it is life support." }
+    },
+    {
+      "id": "se-el-valle", "type": "slang",
+      "t": { "es": ["el valle"], "en": ["the Valley"] },
+      "note": { "en": "In Texas, 'el Valle' is the Rio Grande Valley, down by the border." }
+    },
+    {
+      "id": "se-hielera", "type": "slang",
+      "t": { "es": ["hielera", "la hielera"], "en": ["ice chest"] },
+      "note": { "en": "Texas runs on ice chests: tailgates, fishing, the beach." }
+    },
+    {
+      "id": "se-chanclas", "type": "slang",
+      "t": { "es": ["chanclas", "la chancla"], "en": ["flip-flops", "the sandal"] },
+      "note": { "en": "Footwear, and the most feared tool in a Mexican mom's hand." }
+    }
+  ]
+}

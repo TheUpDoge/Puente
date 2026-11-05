@@ -1,0 +1,11 @@
+{
+  "name": "puente-web",
+  "private": true,
+  "type": "module",
+  "description": "Puente web app: Tejano / Tex-Mex / Chicano Spanish translator and course. Static files, no build step.",
+  "scripts": {
+    "start": "npx --yes serve@14.2.4 -l 8080 .",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tests/smoke.browser.mjs"
+  }
+}

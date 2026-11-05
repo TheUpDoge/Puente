@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "kind": "phrasebook",
+  "id": "es-cu-slang",
+  "title": { "en": "Cuban slang", "es": "Jerga cubana" },
+  "status": "starter-needs-native-review",
+  "dialects": ["es-CU"],
+  "entries": [
+    {
+      "id": "cu-asere", "type": "slang",
+      "t": { "es": ["asere"], "en": ["bro", "buddy"] },
+      "note": {
+        "en": "Friendly Cuban way to address a friend.",
+        "es": "Forma cubana y amistosa de dirigirse a un amigo."
+      }
+    },
+    {
+      "id": "cu-que-bola", "type": "slang",
+      "t": { "es": ["qué bolá", "qué volá", "qué bola"], "en": ["what's up?"] }
+    },
+    {
+      "id": "cu-chevere", "type": "slang",
+      "t": { "es": ["chévere"], "en": ["cool", "great"] }
+    },
+    {
+      "id": "cu-guagua", "type": "slang",
+      "t": { "es": ["guagua"], "en": ["bus"] },
+      "note": {
+        "en": "Bus, in Cuba and much of the Caribbean.",
+        "es": "Autobús, en Cuba y gran parte del Caribe."
+      }
+    },
+    {
+      "id": "cu-jama", "type": "slang",
+      "t": { "es": ["jama", "la jama"], "en": ["food"] }
+    },
+    {
+      "id": "cu-jamar", "type": "slang",
+      "t": { "es": ["jamar"], "en": ["to eat"] }
+    },
+    {
+      "id": "cu-yuma", "type": "slang",
+      "t": { "es": ["yuma"], "en": ["foreigner"] },
+      "note": {
+        "en": "Cuban slang for a foreigner, or for the U.S. itself.",
+        "es": "En Cuba, un extranjero o los propios Estados Unidos."
+      }
+    },
+    {
+      "id": "cu-pinchar", "type": "slang",
+      "t": { "es": ["pinchar", "pinchando"], "en": ["to work"] },
+      "note": {
+        "en": "Cuban slang for working a job.",
+        "es": "En Cuba, trabajar en un empleo."
+      }
+    }
+  ]
+}

@@ -1,5 +1,10 @@
 # Content packs
 
+> **Two homes, one format.** The Android alpha reads packs from `app/src/main/assets/content/`. The
+> web app (Puente Tejano) reads them from `web/content/` and lists them in `web/content/index.json`.
+> A pack written for one works in the other. The web app also honors the optional fields under
+> "Tejano extras" below; older readers simply ignore them.
+
 All pack files are UTF-8 JSON in `app/src/main/assets/content/<kind>/`. Drop a new `.json` file in
 the folder and it is picked up; no code change. A broken file is skipped (and logged), it never
 crashes the app.
@@ -65,3 +70,59 @@ with any resources screen: general information only, not legal advice.
 2. Nothing in a note is offensive or unfair to a group of people.
 3. Resource links open the official site; phone numbers are current.
 4. `status` updated and reviewer credited in the pack.
+
+## Tejano extras (optional fields, web app)
+
+Packs and entries may carry a few more fields. All optional; leave them out if they don't apply.
+
+| Where | Field | Meaning |
+|---|---|---|
+| pack | `title` | `{ "en": "...", "es": "..." }` shown as the filter chip in the Words tab |
+| pack | `region` | Free text, for example `"Southeast & South Texas"` |
+| entry | `std` | The formal / textbook equivalent of the first `es` form, shown as "Formal: ..." |
+| entry | `register` | `casual`, `careful` (can offend, tone matters) or `rough` (strong language). Shown as a badge |
+
+Example:
+
+```json
+{
+  "id": "tx-parquear", "type": "slang",
+  "t": { "es": ["parquear", "parquea", "parqueé"], "en": ["park"] },
+  "std": "estacionar",
+  "note": { "en": "Tex-Mex: English 'park' + -ear." }
+}
+```
+
+How the web app uses types:
+
+- `slang`: Spanish heard → curated English. Its note shows when the word is heard **or** when Puente
+  says it in Spanish, so an English speaker learns the Tejano word they just showed someone.
+- `phrase`: used both ways, no note.
+- `work`: used both ways, note shows for either language. With `annotate_only: true` it only adds the
+  note and never changes the translation.
+
+**Tejano first, then the map.** What Puente *says* in Spanish starts in `web/js/tejano.js` and
+`web/js/lexicon.js` (Southeast Texas wording). `DIAL_WORDS` in `web/js/dialects.js` then reshapes it
+for the region and taper level picked on the map:
+
+```js
+{ id: "bus", en: "bus", level: 1, show: true, base: ["bus"],
+  forms: { tx: "bus", mx: "camión", caribe: "guagua", formal: "autobús" } }
+```
+
+- `base`: the word(s) the lexicon says. Arrays line up: `forms.formal[2]` replaces `base[2]`.
+- `forms`: by region id (`houston`, `sanantonio`, `valle`, `elpaso`, `norte`, `centro`, `caribe`),
+  by group (`tx`, `mx`, `caribe`), and `formal` (required). A region with no form uses `formal`.
+- `level`: 1 = everyday regional word, 2 = local slang. Below that taper level, `formal` is used.
+- `det: true`: only swap after el / la / mi … (for words that are also verbs, like *trabajo*).
+- `show: true`: list it under "Same word, different places".
+- If a swap changes a noun's gender, add both words to `GENDER` and the article follows
+  (*la traila → el remolque*, *el bus → la guagua*).
+- `WORD_SWAPS` and the small functions under them are the Full accent "sounds like" rules.
+
+**Courses** (web app) add: `teacher` (`name`, `hello`), and per lesson `icon` (one emoji), `subtitle`,
+`tia` (the teacher's intro) and per item `std` (formal version). Each lesson needs at least 4 items
+for the quiz; 10 is the sweet spot. Course lines are also added to the translator's book.
+
+Run `npm test` in `web/` after editing: it checks every pack against this format, looks for duplicate
+ids, and makes sure the offline cache lists every file.

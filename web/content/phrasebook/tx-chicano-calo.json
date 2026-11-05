@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "kind": "phrasebook",
+  "id": "tx-chicano-calo",
+  "title": { "en": "Chicano Caló", "es": "Caló chicano" },
+  "status": "starter-needs-native-review",
+  "dialects": ["es-US"],
+  "region": "Texas & the Southwest",
+  "entries": [
+    {
+      "id": "calo-ese", "type": "slang",
+      "t": { "es": ["qué onda ese", "órale ese", "oye ese", "qué pasó ese"], "en": ["what's up, man"] },
+      "note": {
+        "en": "Chicano classic. 'Ese' is literally 'that (guy)'; 'esa' for a woman. On its own, ese still just means 'that'.",
+        "es": "Clásico chicano. 'Ese' = compa; 'esa' para una mujer."
+      }
+    },
+    {
+      "id": "calo-carnala", "type": "slang",
+      "t": { "es": ["carnala", "mi carnala"], "en": ["sis"] },
+      "note": { "en": "A sister, or a close girl friend. 'Carnal' (from carne, blood) is the brother version." }
+    },
+    {
+      "id": "calo-firme", "type": "slang",
+      "t": { "es": ["está firme", "bien firme", "firme"], "en": ["cool", "solid"] },
+      "note": { "en": "Chicano for cool, solid, legit. In plain Spanish 'firme' also means firm or steady." }
+    },
+    {
+      "id": "calo-al-alba", "type": "slang",
+      "t": { "es": ["ponte al alba", "al alba"], "en": ["stay alert"] },
+      "note": { "en": "Caló for 'be on the lookout'. Literally 'at dawn'." }
+    },
+    {
+      "id": "calo-ranfla", "type": "slang",
+      "t": { "es": ["ranfla", "la ranfla", "ranflita"], "en": ["car"] },
+      "std": "carro",
+      "note": { "en": "Caló for a car, especially a lowrider." }
+    },
+    {
+      "id": "calo-carrucha", "type": "slang",
+      "t": { "es": ["carrucha"], "en": ["car"] },
+      "std": "carro"
+    },
+    {
+      "id": "calo-canton", "type": "slang",
+      "t": { "es": ["cantón", "el cantón"], "en": ["home"] },
+      "std": "casa",
+      "note": { "en": "Caló for house or home." }
+    },
+    {
+      "id": "calo-mi-canton", "type": "slang",
+      "t": { "es": ["mi cantón"], "en": ["my place"] },
+      "std": "mi casa",
+      "note": { "en": "'Vamos a mi cantón' = let's go to my place." }
+    },
+    {
+      "id": "calo-garras", "type": "slang",
+      "t": { "es": ["garras", "las garras"], "en": ["clothes"] },
+      "std": "ropa",
+      "note": { "en": "Caló for clothes. Literally 'claws' or 'rags'." }
+    },
+    {
+      "id": "calo-tramos", "type": "slang",
+      "t": { "es": ["tramos"], "en": ["pants"] },
+      "std": "pantalones",
+      "note": { "en": "Caló for pants. In plain Spanish 'tramos' means sections." }
+    },
+    {
+      "id": "calo-calcos", "type": "slang",
+      "t": { "es": ["calcos"], "en": ["shoes"] },
+      "std": "zapatos"
+    },
+    {
+      "id": "calo-jaina", "type": "slang",
+      "t": { "es": ["jaina", "mi jaina", "haina"], "en": ["girlfriend"] },
+      "register": "careful",
+      "note": { "en": "From English 'honey'. Old-school Caló. Fine for your own girlfriend; strangers may not appreciate it." }
+    },
+    {
+      "id": "calo-ruca", "type": "slang",
+      "t": { "es": ["ruca", "mi ruca"], "en": ["woman", "old lady"] },
+      "register": "careful",
+      "note": { "en": "Caló for a woman or girlfriend. Can sound disrespectful; use with care." }
+    },
+    {
+      "id": "calo-la-jura", "type": "slang",
+      "t": { "es": ["la jura"], "en": ["the cops"] },
+      "std": "la policía",
+      "note": { "en": "Slang for police. Say 'la policía' when you are actually talking to them." }
+    },
+    {
+      "id": "calo-la-chota", "type": "slang",
+      "t": { "es": ["la chota"], "en": ["the cops"] },
+      "std": "la policía",
+      "note": { "en": "Slang for police, common in Mexico and Texas." }
+    },
+    {
+      "id": "calo-la-migra", "type": "slang",
+      "t": { "es": ["la migra"], "en": ["immigration agents"] },
+      "std": "inmigración",
+      "note": { "en": "Slang for U.S. immigration enforcement (ICE, Border Patrol)." }
+    },
+    {
+      "id": "calo-ahi-te-watcho", "type": "slang",
+      "t": { "es": ["ahí te watcho", "ahí te wacho", "ahí te guacho", "te watcho", "ahí nos watchamos"], "en": ["see you later"] },
+      "std": "nos vemos",
+      "note": {
+        "en": "From English 'watch'. Chicano and Tex-Mex for 'see ya'.",
+        "es": "Del inglés 'watch'. Chicano y tex-mex para 'nos vemos'."
+      }
+    },
+    {
+      "id": "calo-watchar", "type": "slang",
+      "t": { "es": ["watchar", "wachar", "guachar", "watcha", "wacha"], "en": ["look"] },
+      "std": "mirar",
+      "note": { "en": "From 'watch'. '¡Wacha!' = look!" }
+    },
+    {
+      "id": "calo-nos-vidrios", "type": "slang",
+      "t": { "es": ["ahí nos vidrios", "nos vidrios"], "en": ["see you later"] },
+      "note": { "en": "A pun: 'vidrios' (glass) for 'vemos' (we see)." }
+    },
+    {
+      "id": "calo-pocho", "type": "slang",
+      "t": { "es": ["pocho", "pocha"], "en": ["Americanized Mexican"] },
+      "register": "careful",
+      "note": { "en": "Someone seen as more American than Mexican, often with rusty Spanish. Can sting; many Chicanos reclaim it with pride." }
+    },
+    {
+      "id": "calo-chicano", "type": "slang",
+      "t": { "es": ["chicano", "chicana", "xicano", "xicana"], "en": ["Chicano"] },
+      "note": { "en": "A Mexican American identity, claimed with pride since the 1960s Chicano Movement." }
+    },
+    {
+      "id": "calo-rasquache", "type": "slang",
+      "t": { "es": ["rasquache", "rascuache", "rasquachi"], "en": ["scrappy"] },
+      "note": { "en": "Can be a put-down ('tacky') or a proud style: making beauty and art from whatever is on hand. That style is called rasquachismo." }
+    },
+    {
+      "id": "calo-con-safos", "type": "slang",
+      "t": { "es": ["con safos"], "en": ["respect this"] },
+      "note": { "en": "Chicano sign-off on murals and placas, written C/S: 'the same back to you', don't mess with it." }
+    },
+    {
+      "id": "calo-bironga", "type": "slang",
+      "t": { "es": ["bironga", "bironguita"], "en": ["beer"] },
+      "std": "cerveza"
+    },
+    {
+      "id": "calo-una-helada", "type": "slang",
+      "t": { "es": ["una helada", "una fría", "una heladita"], "en": ["a cold one"] },
+      "note": { "en": "A cold beer, Texas style." }
+    },
+    {
+      "id": "calo-pistear", "type": "slang",
+      "t": { "es": ["pistear", "pisteando", "pisteamos"], "en": ["drinking"] },
+      "note": { "en": "Northern Mexico and Texas slang for drinking alcohol. 'El pisto' = the booze." }
+    },
+    {
+      "id": "calo-chingon", "type": "slang",
+      "t": { "es": ["está chingón", "bien chingón", "chingón", "chingona"], "en": ["awesome"] },
+      "register": "rough",
+      "note": { "en": "Rough word, great meaning: awesome, top-notch. Not for church or your wela." }
+    },
+    {
+      "id": "calo-a-toda-madre", "type": "slang",
+      "t": { "es": ["a toda madre"], "en": ["awesome"] },
+      "register": "rough",
+      "note": { "en": "Rough but positive: totally awesome." }
+    },
+    {
+      "id": "calo-gabacho", "type": "slang",
+      "t": { "es": ["gabacho", "gabacha"], "en": ["white American"] },
+      "register": "careful",
+      "note": { "en": "Slang for a white American. Can be playful or a put-down. 'Bolillo' (a bread roll) is used the same way." }
+    },
+    {
+      "id": "calo-gringo", "type": "slang",
+      "t": { "es": ["gringo", "gringa"], "en": ["American"] },
+      "register": "careful",
+      "note": { "en": "An American, usually white. Tone decides if it is friendly." }
+    }
+  ]
+}
